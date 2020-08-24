@@ -6,19 +6,48 @@
 class Map
 {
 	std::string mapName;
+	int width;
+	int height;
 
 public:
 	Map() {}
 	~Map() {}
 
 	sf::Vector2i** map;
-	int height;
-	int width;
+
 	std::string returnMapName();
-	int mapHeight(std::string mapName);
+	int mapWidth();
 	int mapWidth(std::string mapName);
+	int mapHeight();
+	int mapHeight(std::string mapName);
 	sf::Vector2i** loadMap(std::string mapName);
 };
+
+std::string Map::returnMapName()
+{
+	return this->mapName;
+}
+
+int Map::mapWidth()
+{
+	return this->width;
+}
+
+int Map::mapWidth(std::string mapName)
+{
+	std::ifstream file(mapName);
+	std::string str;
+
+	std::getline(file, str);
+	file.close();
+
+	return str.length() / 6 + 1;
+}
+
+int Map::mapHeight()
+{
+	return this->height;
+}
 
 int Map::mapHeight(std::string mapName)
 {
@@ -35,22 +64,6 @@ int Map::mapHeight(std::string mapName)
 	file.close();
 
 	return counter;
-}
-
-int Map::mapWidth(std::string mapName)
-{
-	std::ifstream file(mapName);
-	std::string str;
-
-	std::getline(file, str);
-	file.close();
-
-	return str.length() / 6 + 1;
-}
-
-std::string Map::returnMapName()
-{
-	return this->mapName;
 }
 
 sf::Vector2i** Map::loadMap(std::string mapName)

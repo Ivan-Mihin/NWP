@@ -79,9 +79,9 @@ int main()
 
 		window.clear();
 
-		for (int h = 0; h < 30; ++h)
+		for (int h = 0; h < loadedMap.mapHeight(); ++h)
 		{
-			for (int w = 0; w < 30; ++w)
+			for (int w = 0; w < loadedMap.mapWidth(); ++w)
 			{
 				tile.setPosition(h * 30, w * 30);
 				tile.setTextureRect(sf::IntRect(loadedMap.map[h][w].x * 30, loadedMap.map[h][w].y * 30, 30, 30));
