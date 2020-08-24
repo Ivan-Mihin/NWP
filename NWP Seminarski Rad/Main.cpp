@@ -4,7 +4,8 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 800), "Pokemon");
+	sf::RenderWindow window(sf::VideoMode(640, 480), "Pokemon");
+	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(350.0f, 350.0f));
 
 	sf::Texture playerTexture;
 	sf::Sprite player;
@@ -62,6 +63,9 @@ int main()
 			}
 			}
 		}
+
+		view.setCenter(player.getPosition().x + player.getGlobalBounds().width / 2, player.getPosition().y + player.getGlobalBounds().height / 2);
+		window.setView(view);
 
 		window.clear();
 		window.draw(player);
