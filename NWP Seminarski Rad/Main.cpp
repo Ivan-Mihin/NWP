@@ -25,6 +25,41 @@ int main()
 				break;
 			}
 
+			case sf::Event::KeyPressed:
+			{
+				switch (gameEvent.key.code)
+				{
+				case sf::Keyboard::W:
+				case sf::Keyboard::Up:
+				{
+					player.setPosition(player.getPosition().x, player.getPosition().y - 30);
+					break;
+				}
+
+				case sf::Keyboard::A:
+				case sf::Keyboard::Left:
+				{
+					player.setPosition(player.getPosition().x - 30, player.getPosition().y);
+					break;
+				}
+
+				case sf::Keyboard::S:
+				case sf::Keyboard::Down:
+				{
+					player.setPosition(player.getPosition().x, player.getPosition().y + 30);
+					break;
+				}
+
+				case sf::Keyboard::D:
+				case sf::Keyboard::Right:
+				{
+					player.setPosition(player.getPosition().x + 30, player.getPosition().y);
+					break;
+				}
+
+				break;
+				}
+			}
 			}
 		}
 
