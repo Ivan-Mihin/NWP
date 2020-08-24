@@ -9,16 +9,19 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(640, 480), "Pokemon");
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(350.0f, 350.0f));
 
+	// Texture and Sprite for the player
 	sf::Texture playerTexture;
 	sf::Sprite player;
 	playerTexture.loadFromFile("Ash_Sprites.png", sf::IntRect(0, 0, 30, 30));
 	player.setTexture(playerTexture);
 
+	// Texture and Sprite for the tiles (map)
 	sf::Texture tileTexture;
 	sf::Sprite tile;
 	tileTexture.loadFromFile("Tile_Set.png");
 	tile.setTexture(tileTexture);
 
+	// Creating a Map object and loading a map into it
 	Map loadedMap;
 	loadedMap.loadMap("Map1.txt");
 

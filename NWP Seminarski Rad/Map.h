@@ -5,22 +5,24 @@
 
 class Map
 {
-	std::string mapName;
-	int width;
-	int height;
+	std::string mapName;	// Path to the .txt file
+	int width;				// Map's width
+	int height;				// Map's height
 
 public:
 	Map() {}
 	~Map() {}
 
-	sf::Vector2i** map;
+	//Variables
+	sf::Vector2i** map;		// 2D array that stores information about tiles
 
-	std::string returnMapName();
-	int mapWidth();
-	int mapWidth(std::string mapName);
-	int mapHeight();
-	int mapHeight(std::string mapName);
-	sf::Vector2i** loadMap(std::string mapName);
+	//Methods
+	std::string returnMapName();					// Method that returns path to the .txt file
+	int mapWidth();									// Method that returns map height
+	int mapWidth(std::string mapName);				// Method that calculates and returns map's height
+	int mapHeight();								// Method that returns map width
+	int mapHeight(std::string mapName);				// Method that calculates and returns map's width
+	sf::Vector2i** loadMap(std::string mapName);	// Method that loads tile information from a text file to a 2D array
 };
 
 std::string Map::returnMapName()
@@ -75,8 +77,8 @@ sf::Vector2i** Map::loadMap(std::string mapName)
 		return NULL;
 	}
 
-	height = mapHeight(mapName);
-	width = mapWidth(mapName);
+	height = mapHeight(mapName);	// number of rows
+	width = mapWidth(mapName);		// number of columns
 
 	map = new sf::Vector2i*[width];
 	for (int w = 0; w < width; ++w)
@@ -89,7 +91,7 @@ sf::Vector2i** Map::loadMap(std::string mapName)
 		}
 	}
 
-	sf::Vector2i loadCounter = sf::Vector2i(0, 0);
+	sf::Vector2i loadCounter = sf::Vector2i(0, 0);		// Variable for iterating through a .txt file
 
 	while (!file.eof())
 	{
