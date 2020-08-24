@@ -6,6 +6,10 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1000, 800), "Pokemon");
 
+	sf::Texture playerTexture;
+	sf::Sprite player;
+	playerTexture.loadFromFile("Ash_Sprites.png", sf::IntRect(0, 0, 30, 30));
+	player.setTexture(playerTexture);
 
 	while (window.isOpen())
 	{
@@ -25,6 +29,7 @@ int main()
 		}
 
 		window.clear();
+		window.draw(player);
 		window.display();
 	}
 
