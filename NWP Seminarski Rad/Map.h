@@ -12,8 +12,46 @@ public:
 	~Map() {}
 
 	sf::Vector2i** map;
+	int height;
+	int width;
+	std::string returnMapName();
+	int mapHeight(std::string mapName);
+	int mapWidth(std::string mapName);
 	sf::Vector2i** loadMap(std::string mapName);
 };
+
+int Map::mapHeight(std::string mapName)
+{
+	std::ifstream file(mapName);
+	std::string str;
+
+	int counter = 0;
+
+	while (std::getline(file, str))
+	{
+		++counter;
+	}
+
+	file.close();
+
+	return counter;
+}
+
+int Map::mapWidth(std::string mapName)
+{
+	std::ifstream file(mapName);
+	std::string str;
+
+	std::getline(file, str);
+	file.close();
+
+	return str.length() / 6 + 1;
+}
+
+std::string Map::returnMapName()
+{
+	return this->mapName;
+}
 
 sf::Vector2i** Map::loadMap(std::string mapName)
 {
@@ -24,8 +62,8 @@ sf::Vector2i** Map::loadMap(std::string mapName)
 		return NULL;
 	}
 
-	int height = 30;
-	int width = 30;
+	height = mapHeight(mapName);
+	width = mapWidth(mapName);
 
 	map = new sf::Vector2i*[width];
 	for (int w = 0; w < width; ++w)
