@@ -84,7 +84,7 @@ int main()
 					case 2:
 					{
 						loaded_map.map = loaded_map.loadMap("Maps/Map2.txt");
-						player.setPosition(player.getPosition().x - 30 * tile_height, 28 * tile_height);
+						player.setPosition(player.getPosition().x - 25 * tile_height, 28 * tile_height);
 						music.stop();
 						music.openFromFile("Audio/Map2Music.ogg");
 						music.play();
@@ -150,7 +150,7 @@ int main()
 						if (loaded_map.returnMapName().compare("Maps/Map1.txt") == 0)
 						{
 							loaded_map.map = loaded_map.loadMap("Maps/Map3.txt");
-							player.setPosition(player.getPosition().x, tile_height);
+							player.setPosition(player.getPosition().x, 6 * tile_height);
 							music.stop();
 							music.openFromFile("Audio/Map3Music.ogg");
 							music.play();
@@ -159,7 +159,7 @@ int main()
 						else
 						{
 							loaded_map.map = loaded_map.loadMap("Maps/Map3.txt");
-							player.setPosition(player.getPosition().x + 30 * tile_width, tile_height);
+							player.setPosition(player.getPosition().x + 25 * tile_width, 6 * tile_height);
 							music.stop();
 							music.openFromFile("Audio/Map3Music.ogg");
 							music.play();
@@ -192,7 +192,7 @@ int main()
 					case 2:
 					{
 						loaded_map.map = loaded_map.loadMap("Maps/Map2.txt");
-						player.setPosition(tile_width, player.getPosition().y);
+						player.setPosition(6 * tile_width, player.getPosition().y);
 						music.stop();
 						music.openFromFile("Audio/Map2Music.ogg");
 						music.play();
