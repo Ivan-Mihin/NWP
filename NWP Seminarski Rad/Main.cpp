@@ -14,22 +14,22 @@ int main()
 	// Texture and Sprite for the player
 	sf::Texture player_texture[4];
 	sf::Sprite player;
-	player_texture[0].loadFromFile("Ash_Sprites.png", sf::IntRect(0, 0, 30, 30));
-	player_texture[1].loadFromFile("Ash_Sprites.png", sf::IntRect(30, 0, 30, 30));
-	player_texture[2].loadFromFile("Ash_Sprites.png", sf::IntRect(0, 30, 30, 30));
-	player_texture[3].loadFromFile("Ash_Sprites.png", sf::IntRect(30, 30, 30, 30));
+	player_texture[0].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(0, 0, 30, 30));
+	player_texture[1].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(30, 0, 30, 30));
+	player_texture[2].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(0, 30, 30, 30));
+	player_texture[3].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(30, 30, 30, 30));
 	player.setTexture(player_texture[0]);
 	player.setPosition(210, 210);
 
 	// Texture and Sprite for the tiles (map)
 	sf::Texture tile_texture;
 	sf::Sprite tile;
-	tile_texture.loadFromFile("Tile_Set.png");
+	tile_texture.loadFromFile("Textures/Tile_Set.png");
 	tile.setTexture(tile_texture);
 
 	// Creating a Map object and loading a map into it
 	Map loaded_map;
-	loaded_map.loadMap("Map1.txt");
+	loaded_map.loadMap("Maps/Map1.txt");
 
 	// Variable for storing position for a current tile
 	sf::Vector2i currentTile;
@@ -57,10 +57,15 @@ int main()
 				{
 					player.setTexture(player_texture[3]);
 
-					if (loaded_map.tile_information[currentTile.x][currentTile.y - 1] > 0)
+					switch (loaded_map.tile_information[currentTile.x][currentTile.y - 1])
 					{
-						player.setPosition(player.getPosition().x, player.getPosition().y - tile_height);
+					case 4:
+					{
+						player.move(0, -tile_height);
+						break;
 					}
+					}
+
 					break;
 				}
 
@@ -69,10 +74,22 @@ int main()
 				{
 					player.setTexture(player_texture[1]);
 
-					if (loaded_map.tile_information[currentTile.x - 1][currentTile.y] > 0)
+					switch (loaded_map.tile_information[currentTile.x - 1][currentTile.y])
 					{
-						player.setPosition(player.getPosition().x - tile_width, player.getPosition().y);
+					case 1:
+					{
+						loaded_map.map = loaded_map.loadMap("Maps/Map1.txt");
+						player.setPosition(28 * tile_width, player.getPosition().y);
+						break;
 					}
+
+					case 4:
+					{
+						player.move(-tile_width, 0);
+						break;
+					}
+					}
+
 					break;
 				}
 
@@ -81,10 +98,15 @@ int main()
 				{
 					player.setTexture(player_texture[0]);
 
-					if (loaded_map.tile_information[currentTile.x][currentTile.y + 1] > 0)
+					switch (loaded_map.tile_information[currentTile.x][currentTile.y + 1])
 					{
-						player.setPosition(player.getPosition().x, player.getPosition().y + tile_height);
+					case 4:
+					{
+						player.move(0, tile_height);
+						break;
 					}
+					}
+
 					break;
 				}
 
@@ -93,14 +115,24 @@ int main()
 				{
 					player.setTexture(player_texture[2]);
 
-					if (loaded_map.tile_information[currentTile.x + 1][currentTile.y] > 0)
+					switch (loaded_map.tile_information[currentTile.x + 1][currentTile.y])
 					{
-						player.setPosition(player.getPosition().x + tile_width, player.getPosition().y);
+					case 2:
+					{
+						loaded_map.map = loaded_map.loadMap("Maps/Map2.txt");
+						player.setPosition(tile_width, player.getPosition().y);
+						break;
 					}
+
+					case 4:
+					{
+						player.move(tile_width, 0);
+						break;
+					}
+					}
+
 					break;
 				}
-
-				break;
 				}
 			}
 			}
@@ -110,7 +142,7 @@ int main()
 					   player.getPosition().y + player.getGlobalBounds().height / 2);
 		window.setView(view);
 
-		currentTile = sf::Vector2i(player.getPosition().x / 30, player.getPosition().y / 30);
+		currentTile = sf::Vector2i(player.getPosition().x / tile_width, player.getPosition().y / tile_height);
 
 		window.clear();
 
@@ -119,7 +151,7 @@ int main()
 			for (int w = 0; w < loaded_map.mapWidth(); ++w)
 			{
 				tile.setPosition(h * tile_height, w * tile_width);
-				tile.setTextureRect(sf::IntRect(loaded_map.map[h][w].x * tile_width, 
+				tile.setTextureRect(sf::IntRect(loaded_map.map[h][w].x * tile_width,
 												loaded_map.map[h][w].y * tile_height, tile_width, tile_height));
 				window.draw(tile);
 			}
