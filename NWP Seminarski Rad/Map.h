@@ -5,7 +5,7 @@
 
 class Map
 {
-	std::string mapName;	// Path to the .txt file
+	std::string map_name;	// Path to the .txt file
 	int width;				// Map's width
 	int height;				// Map's height
 
@@ -27,7 +27,7 @@ public:
 
 std::string Map::returnMapName()
 {
-	return this->mapName;
+	return this->map_name;
 }
 
 int Map::mapWidth()
@@ -70,7 +70,7 @@ int Map::mapHeight(std::string mapName)
 
 sf::Vector2i** Map::loadMap(std::string mapName)
 {
-	this->mapName = mapName;
+	this->map_name = mapName;
 	std::ifstream file(mapName);
 	if (!file.is_open())
 	{
@@ -91,7 +91,7 @@ sf::Vector2i** Map::loadMap(std::string mapName)
 		}
 	}
 
-	sf::Vector2i loadCounter = sf::Vector2i(0, 0);		// Variable for iterating through a .txt file
+	sf::Vector2i load_counter = sf::Vector2i(0, 0);		// Variable for iterating through a .txt file
 
 	while (!file.eof())
 	{
@@ -101,16 +101,16 @@ sf::Vector2i** Map::loadMap(std::string mapName)
 		char x = str[0];
 		char y = str[2];
 
-		map[loadCounter.x][loadCounter.y] = sf::Vector2i(x - '0', y - '0');
+		map[load_counter.x][load_counter.y] = sf::Vector2i(x - '0', y - '0');
 
 		if (file.peek() == '\n')
 		{
-			loadCounter.x = 0;
-			loadCounter.y++;
+			load_counter.x = 0;
+			load_counter.y++;
 		}
 		else
 		{
-			loadCounter.x++;
+			load_counter.x++;
 		}
 	}
 

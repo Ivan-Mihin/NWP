@@ -8,32 +8,41 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(640, 480), "Pokemon");
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(350.0f, 350.0f));
+	const int tile_width = 30;
+	const int tile_height = 30;
 
 	// Texture and Sprite for the player
-	sf::Texture playerTexture;
+	sf::Texture player_texture[4];
 	sf::Sprite player;
-	playerTexture.loadFromFile("Ash_Sprites.png", sf::IntRect(0, 0, 30, 30));
-	player.setTexture(playerTexture);
+	player_texture[0].loadFromFile("Ash_Sprites.png", sf::IntRect(0, 0, 30, 30));
+	player_texture[1].loadFromFile("Ash_Sprites.png", sf::IntRect(30, 0, 30, 30));
+	player_texture[2].loadFromFile("Ash_Sprites.png", sf::IntRect(0, 30, 30, 30));
+	player_texture[3].loadFromFile("Ash_Sprites.png", sf::IntRect(30, 30, 30, 30));
+	player.setTexture(player_texture[0]);
+	player.setPosition(210, 210);
 
 	// Texture and Sprite for the tiles (map)
-	sf::Texture tileTexture;
+	sf::Texture tile_texture;
 	sf::Sprite tile;
-	tileTexture.loadFromFile("Tile_Set.png");
-	tile.setTexture(tileTexture);
+	tile_texture.loadFromFile("Tile_Set.png");
+	tile.setTexture(tile_texture);
 
 	// Creating a Map object and loading a map into it
-	Map loadedMap;
-	loadedMap.loadMap("Map1.txt");
+	Map loaded_map;
+	loaded_map.loadMap("Map1.txt");
+
+	// Variable for storing position for a current tile
+	sf::Vector2i currentTile;
 
 	while (window.isOpen())
 	{
-		sf::Event gameEvent;
+		sf::Event game_event;
 
-		while (window.pollEvent(gameEvent))
+		while (window.pollEvent(game_event))
 		{
-			switch (gameEvent.type)
+			switch (game_event.type)
 			{
-			case gameEvent.Closed:
+			case game_event.Closed:
 			{
 				window.close();
 				break;
@@ -41,33 +50,37 @@ int main()
 
 			case sf::Event::KeyPressed:
 			{
-				switch (gameEvent.key.code)
+				switch (game_event.key.code)
 				{
 				case sf::Keyboard::W:
 				case sf::Keyboard::Up:
 				{
-					player.setPosition(player.getPosition().x, player.getPosition().y - 30);
+					player.setTexture(player_texture[3]);
+					player.setPosition(player.getPosition().x, player.getPosition().y - tile_height);
 					break;
 				}
 
 				case sf::Keyboard::A:
 				case sf::Keyboard::Left:
 				{
-					player.setPosition(player.getPosition().x - 30, player.getPosition().y);
+					player.setTexture(player_texture[1]);
+					player.setPosition(player.getPosition().x - tile_width, player.getPosition().y);
 					break;
 				}
 
 				case sf::Keyboard::S:
 				case sf::Keyboard::Down:
 				{
-					player.setPosition(player.getPosition().x, player.getPosition().y + 30);
+					player.setTexture(player_texture[0]);
+					player.setPosition(player.getPosition().x, player.getPosition().y + tile_height);
 					break;
 				}
 
 				case sf::Keyboard::D:
 				case sf::Keyboard::Right:
 				{
-					player.setPosition(player.getPosition().x + 30, player.getPosition().y);
+					player.setTexture(player_texture[2]);
+					player.setPosition(player.getPosition().x + tile_width, player.getPosition().y);
 					break;
 				}
 
@@ -77,17 +90,21 @@ int main()
 			}
 		}
 
-		view.setCenter(player.getPosition().x + player.getGlobalBounds().width / 2, player.getPosition().y + player.getGlobalBounds().height / 2);
+		view.setCenter(player.getPosition().x + player.getGlobalBounds().width / 2,
+					   player.getPosition().y + player.getGlobalBounds().height / 2);
 		window.setView(view);
+
+		currentTile = sf::Vector2i(player.getPosition().x / 30, player.getPosition().y / 30);
 
 		window.clear();
 
-		for (int h = 0; h < loadedMap.mapHeight(); ++h)
+		for (int h = 0; h < loaded_map.mapHeight(); ++h)
 		{
-			for (int w = 0; w < loadedMap.mapWidth(); ++w)
+			for (int w = 0; w < loaded_map.mapWidth(); ++w)
 			{
-				tile.setPosition(h * 30, w * 30);
-				tile.setTextureRect(sf::IntRect(loadedMap.map[h][w].x * 30, loadedMap.map[h][w].y * 30, 30, 30));
+				tile.setPosition(h * tile_height, w * tile_width);
+				tile.setTextureRect(sf::IntRect(loaded_map.map[h][w].x * tile_width, 
+												loaded_map.map[h][w].y * tile_height, tile_width, tile_height));
 				window.draw(tile);
 			}
 		}
