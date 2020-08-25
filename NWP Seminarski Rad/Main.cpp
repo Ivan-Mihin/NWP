@@ -34,6 +34,13 @@ int main()
 	// Variable for storing position for a current tile
 	sf::Vector2i currentTile;
 
+	sf::Music music;
+	if (!music.openFromFile("Audio/Map1Music.ogg"))
+	{
+		return -1; 
+	}
+	music.play();
+
 	while (window.isOpen())
 	{
 		sf::Event game_event;
@@ -59,6 +66,31 @@ int main()
 
 					switch (loaded_map.tile_information[currentTile.x][currentTile.y - 1])
 					{
+					case 0:
+					{
+						break;
+					}
+
+					case 1:
+					{
+						loaded_map.map = loaded_map.loadMap("Maps/Map1.txt");
+						player.setPosition(player.getPosition().x, 28 * tile_height);
+						music.stop();
+						music.openFromFile("Audio/Map1Music.ogg");
+						music.play();
+						break;
+					}
+
+					case 2:
+					{
+						loaded_map.map = loaded_map.loadMap("Maps/Map2.txt");
+						player.setPosition(player.getPosition().x - 30 * tile_height, 28 * tile_height);
+						music.stop();
+						music.openFromFile("Audio/Map2Music.ogg");
+						music.play();
+						break;
+					}
+
 					case 4:
 					{
 						player.move(0, -tile_height);
@@ -76,10 +108,18 @@ int main()
 
 					switch (loaded_map.tile_information[currentTile.x - 1][currentTile.y])
 					{
+					case 0:
+					{
+						break;
+					}
+
 					case 1:
 					{
 						loaded_map.map = loaded_map.loadMap("Maps/Map1.txt");
 						player.setPosition(28 * tile_width, player.getPosition().y);
+						music.stop();
+						music.openFromFile("Audio/Map1Music.ogg");
+						music.play();
 						break;
 					}
 
@@ -100,6 +140,33 @@ int main()
 
 					switch (loaded_map.tile_information[currentTile.x][currentTile.y + 1])
 					{
+					case 0:
+					{
+						break;
+					}
+
+					case 3:
+					{
+						if (loaded_map.returnMapName().compare("Maps/Map1.txt") == 0)
+						{
+							loaded_map.map = loaded_map.loadMap("Maps/Map3.txt");
+							player.setPosition(player.getPosition().x, tile_height);
+							music.stop();
+							music.openFromFile("Audio/Map3Music.ogg");
+							music.play();
+							break;
+						}
+						else
+						{
+							loaded_map.map = loaded_map.loadMap("Maps/Map3.txt");
+							player.setPosition(player.getPosition().x + 30 * tile_width, tile_height);
+							music.stop();
+							music.openFromFile("Audio/Map3Music.ogg");
+							music.play();
+							break;
+						}
+					}
+
 					case 4:
 					{
 						player.move(0, tile_height);
@@ -117,10 +184,18 @@ int main()
 
 					switch (loaded_map.tile_information[currentTile.x + 1][currentTile.y])
 					{
+					case 0:
+					{
+						break;
+					}
+
 					case 2:
 					{
 						loaded_map.map = loaded_map.loadMap("Maps/Map2.txt");
 						player.setPosition(tile_width, player.getPosition().y);
+						music.stop();
+						music.openFromFile("Audio/Map2Music.ogg");
+						music.play();
 						break;
 					}
 
@@ -146,13 +221,13 @@ int main()
 
 		window.clear();
 
-		for (int h = 0; h < loaded_map.mapHeight(); ++h)
+		for (int w = 0; w < loaded_map.mapWidth(); ++w)
 		{
-			for (int w = 0; w < loaded_map.mapWidth(); ++w)
+			for (int h = 0; h < loaded_map.mapHeight(); ++h)
 			{
-				tile.setPosition(h * tile_height, w * tile_width);
-				tile.setTextureRect(sf::IntRect(loaded_map.map[h][w].x * tile_width,
-												loaded_map.map[h][w].y * tile_height, tile_width, tile_height));
+				tile.setPosition(w * tile_width, h * tile_height);
+				tile.setTextureRect(sf::IntRect(loaded_map.map[w][h].x * tile_width,
+												loaded_map.map[w][h].y * tile_height, tile_width, tile_height));
 				window.draw(tile);
 			}
 		}
