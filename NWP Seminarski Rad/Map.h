@@ -14,7 +14,8 @@ public:
 	~Map() {}
 
 	//Variables
-	sf::Vector2i** map;		// 2D array that stores information about tiles
+	sf::Vector2i** map;			// 2D array that stores information about tiles
+	int** tile_information;		// 2D array that stores information about collision with terrain
 
 	//Methods
 	std::string returnMapName();					// Method that returns path to the .txt file
@@ -91,6 +92,17 @@ sf::Vector2i** Map::loadMap(std::string mapName)
 		}
 	}
 
+	tile_information = new int*[width];
+	for (int w = 0; w < width; ++w)
+	{
+		tile_information[w] = new int[height];
+
+		for (int h = 0; h < height; ++h)
+		{
+			tile_information[w][h] = 0;
+		}
+	}
+
 	sf::Vector2i load_counter = sf::Vector2i(0, 0);		// Variable for iterating through a .txt file
 
 	while (!file.eof())
@@ -100,8 +112,10 @@ sf::Vector2i** Map::loadMap(std::string mapName)
 
 		char x = str[0];
 		char y = str[2];
+		char c = str[4];
 
 		map[load_counter.x][load_counter.y] = sf::Vector2i(x - '0', y - '0');
+		tile_information[load_counter.x][load_counter.y] = c - '0';
 
 		if (file.peek() == '\n')
 		{

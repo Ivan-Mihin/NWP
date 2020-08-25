@@ -56,7 +56,11 @@ int main()
 				case sf::Keyboard::Up:
 				{
 					player.setTexture(player_texture[3]);
-					player.setPosition(player.getPosition().x, player.getPosition().y - tile_height);
+
+					if (loaded_map.tile_information[currentTile.x][currentTile.y - 1] > 0)
+					{
+						player.setPosition(player.getPosition().x, player.getPosition().y - tile_height);
+					}
 					break;
 				}
 
@@ -64,7 +68,11 @@ int main()
 				case sf::Keyboard::Left:
 				{
 					player.setTexture(player_texture[1]);
-					player.setPosition(player.getPosition().x - tile_width, player.getPosition().y);
+
+					if (loaded_map.tile_information[currentTile.x - 1][currentTile.y] > 0)
+					{
+						player.setPosition(player.getPosition().x - tile_width, player.getPosition().y);
+					}
 					break;
 				}
 
@@ -72,7 +80,11 @@ int main()
 				case sf::Keyboard::Down:
 				{
 					player.setTexture(player_texture[0]);
-					player.setPosition(player.getPosition().x, player.getPosition().y + tile_height);
+
+					if (loaded_map.tile_information[currentTile.x][currentTile.y + 1] > 0)
+					{
+						player.setPosition(player.getPosition().x, player.getPosition().y + tile_height);
+					}
 					break;
 				}
 
@@ -80,7 +92,11 @@ int main()
 				case sf::Keyboard::Right:
 				{
 					player.setTexture(player_texture[2]);
-					player.setPosition(player.getPosition().x + tile_width, player.getPosition().y);
+
+					if (loaded_map.tile_information[currentTile.x + 1][currentTile.y] > 0)
+					{
+						player.setPosition(player.getPosition().x + tile_width, player.getPosition().y);
+					}
 					break;
 				}
 
