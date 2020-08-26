@@ -55,7 +55,31 @@ int main()
 		player.moving(&loaded_map, &music);
 		player.sprite.setPosition(player.getX(), player.getY());
 
-		for (int w = 0; w < loaded_map.mapWidth(); ++w)
+		int offset = 7;
+		sf::Vector2i first_drawn_tile = sf::Vector2i(player.getX() / 30 - offset, player.getY() / 30 - offset);
+
+		if (first_drawn_tile.x < 0) 
+		{
+			first_drawn_tile = sf::Vector2i(0, player.getY() / 30 - offset);
+		}
+
+		if (first_drawn_tile.y < 0)
+		{
+			first_drawn_tile = sf::Vector2i(player.getX() / 30 - offset, 0);
+		}
+
+		for (int w = first_drawn_tile.x; w < first_drawn_tile.x + offset * 2 + 1; ++w)
+		{
+			for (int h = first_drawn_tile.y; h < first_drawn_tile.y + offset * 2 + 1; ++h)
+			{
+				tile.setPosition(w * tile_width, h * tile_height);
+				tile.setTextureRect(sf::IntRect(loaded_map.map[w][h].x * tile_width,
+					loaded_map.map[w][h].y * tile_height, tile_width, tile_height));
+				window.draw(tile);
+			}
+		}
+
+		/*for (int w = 0; w < loaded_map.mapWidth(); ++w)
 		{
 			for (int h = 0; h < loaded_map.mapHeight(); ++h)
 			{
@@ -64,7 +88,7 @@ int main()
 												loaded_map.map[w][h].y * tile_height, tile_width, tile_height));
 				window.draw(tile);
 			}
-		}
+		}*/
 
 		window.draw(player.sprite);
 		window.display();

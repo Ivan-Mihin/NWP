@@ -151,7 +151,7 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 					if (loaded_map->returnMapName().compare("Maps/Map1.txt") == 0)
 					{
 						loaded_map->loadMap("Maps/Map3.txt");
-						current_tile = sf::Vector2i(sprite.getPosition().x, 6 * tile_size);
+						current_tile = sf::Vector2i(sprite.getPosition().x, 7 * tile_size);
 						music->stop();
 						music->openFromFile("Audio/Map3Music.ogg");
 						music->play();
@@ -159,7 +159,7 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 					else
 					{
 						loaded_map->loadMap("Maps/Map3.txt");
-						current_tile = sf::Vector2i(sprite.getPosition().x + 25 * tile_size, 6 * tile_size);
+						current_tile = sf::Vector2i(sprite.getPosition().x + 25 * tile_size, 7 * tile_size);
 						music->stop();
 						music->openFromFile("Audio/Map3Music.ogg");
 						music->play();
@@ -180,9 +180,9 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 				if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] == 2)
 				{
 					loaded_map->loadMap("Maps/Map2.txt");
-					current_tile = sf::Vector2i(6 * tile_size, sprite.getPosition().y);
+					current_tile = sf::Vector2i(7 * tile_size, sprite.getPosition().y);
 					music->stop();
-					music->openFromFile("audio/map3music.ogg");
+					music->openFromFile("Audio/Map2Music.ogg");
 					music->play();
 				}
 
