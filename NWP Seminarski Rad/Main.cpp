@@ -51,8 +51,8 @@ int main()
 					   player.sprite.getPosition().y + player.sprite.getGlobalBounds().height / 2);
 		window.setView(view);
 
-		player.keyboardInput(&loaded_map);
-		player.moving(&loaded_map);
+		player.keyboardInput(loaded_map.tile_information);
+		player.moving(&loaded_map, &music);
 		player.sprite.setPosition(player.getX(), player.getY());
 
 		for (int w = 0; w < loaded_map.mapWidth(); ++w)

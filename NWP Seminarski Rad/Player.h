@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 
 class Player
 {
@@ -17,8 +16,8 @@ public:
 
 	sf::Sprite sprite;
 
-	void keyboardInput(Map* loaded_map);
-	void moving(Map* loaded_map);
+	void keyboardInput(int** tile_information);
+	void moving(Map* loaded_map, sf::Music* music);
 	int getX();
 	int getY();
 };

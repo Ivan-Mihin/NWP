@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Map.h"
 #include "Player.h"
 
@@ -23,7 +24,7 @@ Player::Player()
 	walking = false;
 }
 
-void Player::keyboardInput(Map* loaded_map)
+void Player::keyboardInput(int** tile_information)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
@@ -32,7 +33,7 @@ void Player::keyboardInput(Map* loaded_map)
 			sprite.setTexture(texture[UP]);
 			next_tile = sf::Vector2i(current_tile.x, current_tile.y - tile_size);
 
-			if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
+			if (tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
 			{
 				move[UP] = true;
 				walking = true;
@@ -47,7 +48,7 @@ void Player::keyboardInput(Map* loaded_map)
 			sprite.setTexture(texture[LEFT]);
 			next_tile = sf::Vector2i(current_tile.x - tile_size, current_tile.y);
 
-			if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
+			if (tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
 			{
 				move[LEFT] = true;
 				walking = true;
@@ -62,7 +63,7 @@ void Player::keyboardInput(Map* loaded_map)
 			sprite.setTexture(texture[DOWN]);
 			next_tile = sf::Vector2i(current_tile.x, current_tile.y + tile_size);
 
-			if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
+			if (tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
 			{
 				move[DOWN] = true;
 				walking = true;
@@ -77,7 +78,7 @@ void Player::keyboardInput(Map* loaded_map)
 			sprite.setTexture(texture[RIGHT]);
 			next_tile = sf::Vector2i(current_tile.x + tile_size, current_tile.y);
 
-			if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
+			if (tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
 			{
 				move[RIGHT] = true;
 				walking = true;
@@ -86,7 +87,7 @@ void Player::keyboardInput(Map* loaded_map)
 	}
 }
 
-void Player::moving(Map* loaded_map)
+void Player::moving(Map* loaded_map, sf::Music* music)
 {
 	if (walking == true)
 	{
@@ -100,18 +101,18 @@ void Player::moving(Map* loaded_map)
 				{
 					loaded_map->loadMap("Maps/Map1.txt");
 					current_tile = sf::Vector2i(sprite.getPosition().x, 28 * tile_size);
-					/*music.stop();
-					music.openFromFile("Audio/Map1Music.ogg");
-					music.play();*/
+					music->stop();
+					music->openFromFile("Audio/Map1Music.ogg");
+					music->play();
 				}
 
 				if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] == 2)
 				{
 					loaded_map->loadMap("Maps/Map2.txt");
 					current_tile = sf::Vector2i(sprite.getPosition().x - 25 * tile_size, 28 * tile_size);
-					/*music.stop();
-					music.openFromFile("Audio/Map2Music.ogg");
-					music.play();*/
+					music->stop();
+					music->openFromFile("Audio/Map2Music.ogg");
+					music->play();
 				}
 
 				walking = false;
@@ -129,9 +130,9 @@ void Player::moving(Map* loaded_map)
 				{
 					loaded_map->loadMap("Maps/Map1.txt");
 					current_tile = sf::Vector2i(28 * tile_size, sprite.getPosition().y);
-					/*music.stop();
-					music.openFromFile("Audio/Map1Music.ogg");
-					music.play();*/
+					music->stop();
+					music->openFromFile("Audio/Map1Music.ogg");
+					music->play();
 				}
 
 				walking = false;
@@ -151,17 +152,17 @@ void Player::moving(Map* loaded_map)
 					{
 						loaded_map->loadMap("Maps/Map3.txt");
 						current_tile = sf::Vector2i(sprite.getPosition().x, 6 * tile_size);
-						/*music.stop();
-						music.openFromFile("Audio/Map3Music.ogg");
-						music.play();*/
+						music->stop();
+						music->openFromFile("Audio/Map3Music.ogg");
+						music->play();
 					}
 					else
 					{
 						loaded_map->loadMap("Maps/Map3.txt");
 						current_tile = sf::Vector2i(sprite.getPosition().x + 25 * tile_size, 6 * tile_size);
-						/*music.stop();
-						music.openFromFile("Audio/Map3Music.ogg");
-						music.play();*/
+						music->stop();
+						music->openFromFile("Audio/Map3Music.ogg");
+						music->play();
 					}
 				}
 
@@ -180,9 +181,9 @@ void Player::moving(Map* loaded_map)
 				{
 					loaded_map->loadMap("Maps/Map2.txt");
 					current_tile = sf::Vector2i(6 * tile_size, sprite.getPosition().y);
-					/*music.stop();
-					music.openFromFile("Audio/Map3Music.ogg");
-					music.play();*/
+					music->stop();
+					music->openFromFile("audio/map3music.ogg");
+					music->play();
 				}
 
 				walking = false;
