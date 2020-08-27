@@ -1,11 +1,13 @@
 #pragma once
+#include "Audio.h"
 
 class Player
 {
 	float movement_speed;
-	bool walking;
+	bool is_moving;
 	bool move[4];
-	int animation_counter;
+	unsigned int animation_counter;
+	unsigned int loops_per_tile_change;
 	sf::Texture texture[12];
 	sf::Vector2f current_tile;
 	sf::Vector2i next_tile;
@@ -17,9 +19,9 @@ public:
 
 	sf::Sprite sprite;
 
-	void keyboardInput(int** tile_information);
-	void moving(Map* loaded_map, sf::Music* music);
+	void keyboardInput(unsigned int** tile_information);
+	void movement(Map* loaded_map, Audio* audio);
 	void animation(int index);
-	int getX();
-	int getY();
+	float getX();
+	float getY();
 };

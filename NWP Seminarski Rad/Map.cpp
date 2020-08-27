@@ -3,17 +3,22 @@
 #include <string>
 #include "Map.h"
 
+Map::Map()
+{
+	loadMap("Maps/Map1.txt");
+}
+
 std::string Map::returnMapName()
 {
 	return this->map_name;
 }
 
-int Map::mapWidth()
+unsigned int Map::mapWidth()
 {
 	return this->width;
 }
 
-int Map::mapWidth(std::string mapName)
+unsigned int Map::mapWidth(std::string mapName)
 {
 	std::ifstream file(mapName);
 	std::string str;
@@ -24,12 +29,12 @@ int Map::mapWidth(std::string mapName)
 	return str.length() / 6 + 1;
 }
 
-int Map::mapHeight()
+unsigned int Map::mapHeight()
 {
 	return this->height;
 }
 
-int Map::mapHeight(std::string mapName)
+unsigned int Map::mapHeight(std::string mapName)
 {
 	std::ifstream file(mapName);
 	std::string str;
@@ -46,14 +51,14 @@ int Map::mapHeight(std::string mapName)
 	return counter;
 }
 
-sf::Vector2i** Map::loadMap(std::string mapName)
+void Map::loadMap(std::string mapName)
 {
 	this->map_name = mapName;
 
 	std::ifstream file(mapName);
 	if (!file.is_open())
 	{
-		return NULL;
+		return;
 	}
 
 	height = mapHeight(mapName);	// number of rows
@@ -70,10 +75,10 @@ sf::Vector2i** Map::loadMap(std::string mapName)
 		}
 	}
 
-	tile_information = new int*[width];
+	tile_information = new unsigned int*[width];
 	for (int w = 0; w < width; ++w)
 	{
-		tile_information[w] = new int[height];
+		tile_information[w] = new unsigned int[height];
 
 		for (int h = 0; h < height; ++h)
 		{
@@ -107,6 +112,4 @@ sf::Vector2i** Map::loadMap(std::string mapName)
 	}
 
 	file.close();
-
-	return map;
 }

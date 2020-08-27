@@ -1,26 +1,26 @@
 #pragma once
 
-int const tile_size = 30;
+unsigned int const tile_size = 30;
 
 class Map
 {
-	std::string map_name;	// Path to the .txt file
-	int width;				// Map's width
-	int height;				// Map's height
+	std::string map_name;		// Path to the .txt file
+	unsigned int width;			// Map's width
+	unsigned int height;		// Map's height
 
 public:
-	Map() {}
+	Map();
 	~Map() {}
 
 	//Variables
-	sf::Vector2i** map;			// 2D array that stores information about tiles
-	int** tile_information;		// 2D array that stores information about collision with terrain
+	sf::Vector2i** map;					// 2D array that stores information about tiles
+	unsigned int** tile_information;	// 2D array that stores information about tiles (collision, map change etc.)
 
 	//Methods
-	std::string returnMapName();					// Method that returns path to the .txt file
-	int mapWidth();									// Method that returns map height
-	int mapWidth(std::string mapName);				// Method that calculates and returns map's height
-	int mapHeight();								// Method that returns map width
-	int mapHeight(std::string mapName);				// Method that calculates and returns map's width
-	sf::Vector2i** loadMap(std::string mapName);	// Method that loads tile information from a text file to a 2D array
+	std::string returnMapName();						// Method that returns path to the .txt file
+	unsigned int mapWidth();							// Method that returns map height
+	unsigned int mapWidth(std::string mapName);			// Method that calculates and returns map's height
+	unsigned int mapHeight();							// Method that returns map width
+	unsigned int mapHeight(std::string mapName);		// Method that calculates and returns map's width
+	void loadMap(std::string mapName);		// Method that loads tile information from a text file to a 2D array
 };
