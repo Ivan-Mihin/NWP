@@ -6,20 +6,32 @@
 Player::Player()
 {
 	sprite.setPosition(210.0f, 210.0f);
-	current_tile = (sf::Vector2i) sprite.getPosition();
-	movement_speed = 1;
+	current_tile = sprite.getPosition();
+	movement_speed = 0.4f;
+	animation_counter = 0;
 
 	move[UP] = false;
 	move[LEFT] = false;
 	move[DOWN] = false;
 	move[RIGHT] = false;
 
-	texture[UP].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(30, 30, 30, 30));
-	texture[LEFT].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(30, 0, 30, 30));
-	texture[DOWN].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(0, 0, 30, 30));
-	texture[RIGHT].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(0, 30, 30, 30));
+	texture[0].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(0, 0, 30, 30));
+	texture[1].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(30, 0, 30, 30));
+	texture[2].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(60, 0, 30, 30));
 
-	sprite.setTexture(texture[DOWN]);
+	texture[3].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(0, 30, 30, 30));
+	texture[4].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(30, 30, 30, 30));
+	texture[5].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(60, 30, 30, 30));
+
+	texture[6].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(0, 60, 30, 30));
+	texture[7].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(30, 60, 30, 30));
+	texture[8].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(60, 60, 30, 30));
+
+	texture[9].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(0, 90, 30, 30));
+	texture[10].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(30, 90, 30, 30));
+	texture[11].loadFromFile("Textures/Ash_Sprites.png", sf::IntRect(60, 90, 30, 30));
+
+	sprite.setTexture(texture[6]);
 
 	walking = false;
 }
@@ -94,13 +106,18 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 		if (move[UP] == true)
 		{
 			current_tile.y -= movement_speed;
+			animation(UP * 3);
 
-			if (current_tile.y == next_tile.y)
+			if (current_tile.y <= next_tile.y)
 			{
+				current_tile.y = next_tile.y;
+				animation_counter = 0;
+				sprite.setTexture(texture[UP * 3]);
+
 				if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] == 1)
 				{
 					loaded_map->loadMap("Maps/Map1.txt");
-					current_tile = sf::Vector2i(sprite.getPosition().x, 28 * tile_size);
+					current_tile = sf::Vector2f(sprite.getPosition().x, 29 * tile_size);
 					music->stop();
 					music->openFromFile("Audio/Map1Music.ogg");
 					music->play();
@@ -109,7 +126,7 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 				if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] == 2)
 				{
 					loaded_map->loadMap("Maps/Map2.txt");
-					current_tile = sf::Vector2i(sprite.getPosition().x - 25 * tile_size, 28 * tile_size);
+					current_tile = sf::Vector2f(sprite.getPosition().x - 25 * tile_size, 29 * tile_size);
 					music->stop();
 					music->openFromFile("Audio/Map2Music.ogg");
 					music->play();
@@ -123,13 +140,18 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 		if (move[LEFT] == true)
 		{
 			current_tile.x -= movement_speed;
-
-			if (current_tile.x == next_tile.x)
+			animation(LEFT * 3);
+			
+			if (current_tile.x <= next_tile.x)
 			{
+				current_tile.x = next_tile.x;
+				animation_counter = 0;
+				sprite.setTexture(texture[LEFT * 3]);
+
 				if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] == 1)
 				{
 					loaded_map->loadMap("Maps/Map1.txt");
-					current_tile = sf::Vector2i(28 * tile_size, sprite.getPosition().y);
+					current_tile = sf::Vector2f(28 * tile_size, sprite.getPosition().y);
 					music->stop();
 					music->openFromFile("Audio/Map1Music.ogg");
 					music->play();
@@ -143,15 +165,20 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 		if (move[DOWN] == true)
 		{
 			current_tile.y += movement_speed;
+			animation(DOWN * 3);
 
-			if (current_tile.y == next_tile.y)
+			if (current_tile.y >= next_tile.y)
 			{
+				current_tile.y = next_tile.y;
+				animation_counter = 0;
+				sprite.setTexture(texture[DOWN * 3]);
+
 				if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] == 3)
 				{
 					if (loaded_map->returnMapName().compare("Maps/Map1.txt") == 0)
 					{
 						loaded_map->loadMap("Maps/Map3.txt");
-						current_tile = sf::Vector2i(sprite.getPosition().x, 7 * tile_size);
+						current_tile = sf::Vector2f(sprite.getPosition().x, 7 * tile_size);
 						music->stop();
 						music->openFromFile("Audio/Map3Music.ogg");
 						music->play();
@@ -159,7 +186,7 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 					else
 					{
 						loaded_map->loadMap("Maps/Map3.txt");
-						current_tile = sf::Vector2i(sprite.getPosition().x + 25 * tile_size, 7 * tile_size);
+						current_tile = sf::Vector2f(sprite.getPosition().x + 25 * tile_size, 7 * tile_size);
 						music->stop();
 						music->openFromFile("Audio/Map3Music.ogg");
 						music->play();
@@ -174,13 +201,18 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 		if (move[RIGHT] == true)
 		{
 			current_tile.x += movement_speed;
+			animation(RIGHT * 3);
 
-			if (current_tile.x == next_tile.x)
+			if (current_tile.x >= next_tile.x)
 			{
+				current_tile.x = next_tile.x;
+				animation_counter = 0;
+				sprite.setTexture(texture[RIGHT * 3]);
+
 				if (loaded_map->tile_information[next_tile.x / 30][next_tile.y / 30] == 2)
 				{
 					loaded_map->loadMap("Maps/Map2.txt");
-					current_tile = sf::Vector2i(7 * tile_size, sprite.getPosition().y);
+					current_tile = sf::Vector2f(7 * tile_size, sprite.getPosition().y);
 					music->stop();
 					music->openFromFile("Audio/Map2Music.ogg");
 					music->play();
@@ -190,6 +222,24 @@ void Player::moving(Map* loaded_map, sf::Music* music)
 				move[RIGHT] = false;
 			}
 		}
+	}
+}
+
+void Player::animation(int index)
+{
+	++animation_counter;
+
+	if (animation_counter > 0 && animation_counter <= 25)
+	{
+		sprite.setTexture(texture[index + 1]);
+	}
+	else if (animation_counter > 25 && animation_counter <= 50)
+	{
+		sprite.setTexture(texture[index + 2]);
+	}
+	else
+	{
+		sprite.setTexture(texture[index + 1]);
 	}
 }
 
