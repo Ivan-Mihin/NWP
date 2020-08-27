@@ -31,7 +31,7 @@ void Player::keyboardInput(unsigned int** tile_information)
 	{
 		if (is_moving == false)
 		{
-			sprite.setTexture(texture[UP]);
+			sprite.setTexture(texture[UP * 3]);
 			next_tile = sf::Vector2i(current_tile.x, current_tile.y - tile_size);
 
 			if (tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
@@ -46,7 +46,7 @@ void Player::keyboardInput(unsigned int** tile_information)
 	{
 		if (is_moving == false)
 		{
-			sprite.setTexture(texture[LEFT]);
+			sprite.setTexture(texture[LEFT * 3]);
 			next_tile = sf::Vector2i(current_tile.x - tile_size, current_tile.y);
 
 			if (tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
@@ -61,7 +61,7 @@ void Player::keyboardInput(unsigned int** tile_information)
 	{
 		if (is_moving == false)
 		{
-			sprite.setTexture(texture[DOWN]);
+			sprite.setTexture(texture[DOWN * 3]);
 			next_tile = sf::Vector2i(current_tile.x, current_tile.y + tile_size);
 
 			if (tile_information[next_tile.x / 30][next_tile.y / 30] > 0)
@@ -76,7 +76,7 @@ void Player::keyboardInput(unsigned int** tile_information)
 	{
 		if (is_moving == false)
 		{
-			sprite.setTexture(texture[RIGHT]);
+			sprite.setTexture(texture[RIGHT * 3]);
 			next_tile = sf::Vector2i(current_tile.x + tile_size, current_tile.y);
 
 			if (tile_information[next_tile.x / 30][next_tile.y / 30] > 0)

@@ -5,6 +5,9 @@
 
 Map::Map()
 {
+	tile_texture.loadFromFile("Textures/Tile_Set.png");
+	tile.setTexture(tile_texture);
+
 	loadMap("Maps/Map1.txt");
 }
 

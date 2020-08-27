@@ -10,12 +10,6 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(640, 480), "Pokemon");
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(350.0f, 350.0f));
 
-	// Texture and Sprite for the tiles (map)
-	sf::Texture tile_texture;
-	sf::Sprite tile;
-	tile_texture.loadFromFile("Textures/Tile_Set.png");
-	tile.setTexture(tile_texture);
-
 	// Creating a Map object and loading a map into it
 	Map loaded_map;
 
@@ -67,10 +61,10 @@ int main()
 		{
 			for (int h = first_drawn_tile.y; h < first_drawn_tile.y + offset * 2 + 1; ++h)
 			{
-				tile.setPosition(w * tile_size, h * tile_size);
-				tile.setTextureRect(sf::IntRect(loaded_map.map[w][h].x * tile_size,
+				loaded_map.tile.setPosition(w * tile_size, h * tile_size);
+				loaded_map.tile.setTextureRect(sf::IntRect(loaded_map.map[w][h].x * tile_size,
 												loaded_map.map[w][h].y * tile_size, tile_size, tile_size));
-				window.draw(tile);
+				window.draw(loaded_map.tile);
 			}
 		}
 
