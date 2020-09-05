@@ -45,16 +45,16 @@ int main()
 		player.sprite.setPosition(player.getX(), player.getY());
 
 		int offset = 7;
-		sf::Vector2i first_drawn_tile = sf::Vector2i(player.getX() / 30 - offset, player.getY() / 30 - offset);
+		sf::Vector2i first_drawn_tile = sf::Vector2i(player.getX() / tile_size - offset, player.getY() / tile_size - offset);
 
 		if (first_drawn_tile.x < 0) 
 		{
-			first_drawn_tile = sf::Vector2i(0, player.getY() / 30 - offset);
+			first_drawn_tile = sf::Vector2i(0, player.getY() / tile_size - offset);
 		}
 
 		if (first_drawn_tile.y < 0)
 		{
-			first_drawn_tile = sf::Vector2i(player.getX() / 30 - offset, 0);
+			first_drawn_tile = sf::Vector2i(player.getX() / tile_size - offset, 0);
 		}
 
 		for (int w = first_drawn_tile.x; w < first_drawn_tile.x + offset * 2 + 1; ++w)

@@ -4,6 +4,7 @@
 Audio::Audio()
 {
 	music.openFromFile("Audio/Map1Music.ogg");
+	music.setVolume(25);
 	music.play();
 	music.setLoop(true);
 }

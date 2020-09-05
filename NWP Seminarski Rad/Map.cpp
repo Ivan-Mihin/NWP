@@ -9,6 +9,7 @@ Map::Map()
 	tile.setTexture(tile_texture);
 
 	loadMap("Maps/Map1.txt");
+	current_map = MAP1;
 }
 
 std::string Map::returnMapName()
@@ -96,12 +97,12 @@ void Map::loadMap(std::string mapName)
 		std::string str;
 		file >> str;
 
-		char x = str[0];
-		char y = str[2];
-		char c = str[4];
+		int x = std::stoi(str.substr(0, 2));
+		int y = std::stoi(str.substr(3, 5));
+		int c = std::stoi(str.substr(6, 8));
 
-		map[load_counter.x][load_counter.y] = sf::Vector2i(x - '0', y - '0');
-		tile_information[load_counter.x][load_counter.y] = c - '0';
+		map[load_counter.x][load_counter.y] = sf::Vector2i(x, y);
+		tile_information[load_counter.x][load_counter.y] = c;
 
 		if (file.peek() == '\n')
 		{
