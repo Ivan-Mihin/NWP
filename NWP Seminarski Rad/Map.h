@@ -17,6 +17,8 @@ public:
 	sf::Sprite tile;
 	sf::Vector2i** map;					// 2D array that stores information about tiles
 	unsigned int** tile_information;	// 2D array that stores information about tiles (collision, map change etc.)
+	enum maps {MAP1 = 1, MAP2 = 2, MAP3 = 3};
+	int current_map;
 
 	//Methods
 	std::string returnMapName();						// Method that returns path to the .txt file
