@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include "Audio.h"
+#include "Intro.h"
 #include "Map.h"
 #include "Player.h"
 
@@ -17,6 +18,9 @@ int main()
 	Audio audio;
 
 	Player player;
+
+	Intro intro;
+	intro.introSequence(&window);
 
 	while (window.isOpen())
 	{
