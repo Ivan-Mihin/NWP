@@ -11,4 +11,5 @@ public:
 	~Audio() {}
 
 	void changeMusic(std::string path);
+	void changeMusic(std::string path, int volume);
 };
