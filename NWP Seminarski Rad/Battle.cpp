@@ -1,31 +1,44 @@
-#pragma once
+#include <SFML/Graphics.hpp>
 #include "Battle.h"
 #include "Pokemon.h"
+#include "Bulbasaur.h"
+#include "Charmander.h"
+#include "Squirtle.h"
+#include "Pikachu.h"
+#include "Player.h"
 
 Battle::Battle()
 {
-	font.loadFromFile("arial.ttf");
+	font.loadFromFile("Fonts/Pokemon_GB.ttf");
 
-	text1.setFont(font);
-	text1.setString("Hello world");
-	text1.setCharacterSize(24);
-	text1.setFillColor(sf::Color::Red);
-	text1.setStyle(sf::Text::Bold | sf::Text::Underlined);
-	text1.setPosition(50.0f, 50.0f);
-
-	text2.setFont(font);
-	text2.setString("Hello world");
-	text2.setCharacterSize(24);
-	text2.setFillColor(sf::Color::Red);
-	text2.setStyle(sf::Text::Bold | sf::Text::Underlined);
-	text2.setPosition(250.0f, 250.0f);
+	texture.loadFromFile("Textures/Battle_Background.png");
+	background.setTexture(texture);
+	background.setPosition(0.0f, 0.0f);
 }
 
-void Battle::start()
+void Battle::start(Pokemon pokemon)
 {
-	sf::RenderWindow battleWindow(sf::VideoMode(800, 600), "Battle");
+	sf::RenderWindow battleWindow(sf::VideoMode(640, 480), "Battle");
 
 	pokemonSelect();
+
+	text1.setFont(font);
+	text1.setString(this->pokemon.getName());
+	text1.setCharacterSize(16);
+	text1.setFillColor(sf::Color::White);
+	text1.setStyle(sf::Text::Bold);
+	text1.setPosition(5.0f, 5.0f);
+
+	text2.setFont(font);
+	text2.setString(pokemon.getName());
+	text2.setCharacterSize(16);
+	text2.setFillColor(sf::Color::White);
+	text2.setStyle(sf::Text::Bold);
+
+	text2.setOrigin(text2.getLocalBounds().left + text2.getLocalBounds().width,
+		text2.getLocalBounds().top + text2.getLocalBounds().height);
+	text2.setPosition(280.0f, 250.0f);
+
 
 	while (battleWindow.isOpen())
 	{
@@ -41,12 +54,13 @@ void Battle::start()
 				break;
 			}
 			}
-
-			battleWindow.clear();
-			battleWindow.draw(text1);
-			battleWindow.draw(text2);
-			battleWindow.display();
 		}
+
+		battleWindow.clear();
+		battleWindow.draw(background);
+		battleWindow.draw(text1);
+		battleWindow.draw(text2);
+		battleWindow.display();
 	}
 }
 
@@ -58,30 +72,22 @@ void Battle::pokemonSelect()
 	{
 	case 0:
 	{
-		chosen_pokemon = pokemon.BULBASAUR;
-		pokemon.texture.loadFromFile("Bulbasaur.png", sf::IntRect(0, 0, 128, 128));
-		pokemon.sprite.setTexture(pokemon.texture);
+		pokemon.setPokemon(pokemon.BULBASAUR);
 		break;
 	}
 	case 1:
 	{
-		chosen_pokemon = pokemon.CHARMANDER;
-		pokemon.texture.loadFromFile("Charmander.png", sf::IntRect(0, 0, 128, 128));
-		pokemon.sprite.setTexture(pokemon.texture);
+		pokemon.setPokemon(pokemon.CHARMANDER);
 		break;
 	}
 	case 2:
 	{
-		chosen_pokemon = pokemon.SQUIRTLE;
-		pokemon.texture.loadFromFile("Squirtle.png", sf::IntRect(0, 0, 128, 128));
-		pokemon.sprite.setTexture(pokemon.texture);
+		pokemon.setPokemon(pokemon.SQUIRTLE);
 		break;
 	}
 	case 3:
 	{
-		chosen_pokemon = pokemon.PIKACHU;
-		pokemon.texture.loadFromFile("Pikachu.png", sf::IntRect(0, 0, 128, 128));
-		pokemon.sprite.setTexture(pokemon.texture);
+		pokemon.setPokemon(pokemon.PIKACHU);
 		break;
 	}
 	}

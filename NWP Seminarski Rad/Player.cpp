@@ -1,4 +1,3 @@
-#pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Battle.h"
@@ -142,7 +141,7 @@ void Player::movement(Map* loaded_map, Audio* audio)
 				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
 				{
 					Battle battle;
-					battle.start();
+					battle.start(pokemon);
 				}
 
 				is_moving = false;

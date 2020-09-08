@@ -7,9 +7,10 @@ class Pokemon
 	int move2;
 	int move3;
 	int move4;
+	std::string name;
 
 public:
-	Pokemon();
+	Pokemon() {};
 	~Pokemon() {}
 
 	int hit_points;
@@ -23,4 +24,5 @@ public:
 	};
 
 	void setPokemon(int choice);
+	std::string getName();
 };

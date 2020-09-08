@@ -3,6 +3,7 @@
 
 class Charmander
 {
+	std::string name;
 	int hit_points;
 	int move1;
 	int move2;
@@ -17,4 +18,5 @@ public:
 	sf::Sprite sprite;
 	int getHitPoints();
 	int getMove(int move);
+	std::string getName();
 };

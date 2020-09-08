@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include <fstream>
 #include <iostream>
 #include "Audio.h"
 #include "Intro.h"
@@ -19,7 +18,8 @@ int main()
 	Intro intro;
 	intro.introSequence(&window);
 	
-	player.pokemon.setPokemonStats(intro.choosePokemon(&window));
+	int budala = intro.choosePokemon(&window);
+	player.pokemon.setPokemon(budala);
 
 	// Creating a Map object and loading a map into it
 	Map loaded_map;

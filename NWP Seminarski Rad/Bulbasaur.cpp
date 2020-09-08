@@ -2,6 +2,7 @@
 
 Bulbasaur::Bulbasaur()
 {
+	name = "BULBASAUR";
 	hit_points = 40;
 	move1 = 2;
 	move2 = 5;
@@ -37,4 +38,9 @@ int Bulbasaur::getMove(int move)
 		return move4;
 	}
 	}
+}
+
+std::string Bulbasaur::getName()
+{
+	return name;
 }

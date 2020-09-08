@@ -1,4 +1,3 @@
-#pragma once
 #include <SFML/Graphics.hpp>
 #include "Button.h"
 #include "Intro.h"
@@ -15,14 +14,11 @@ Intro::Intro()
 
 void Intro::introSequence(sf::RenderWindow* window)
 {
-	
-
 	text1.setFont(font);
 	text1.setString("PRESS ANY BUTTON");
 	text1.setCharacterSize(24);
 	text1.setFillColor(sf::Color::White);
 	text1.setStyle(sf::Text::Bold);
-	//text1.setPosition(120.0f, 350.0f);
 	text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f, 
 					text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
 	text1.setPosition((float) (window->getSize().x / 2), 350.0f);
@@ -32,7 +28,6 @@ void Intro::introSequence(sf::RenderWindow* window)
 	text2.setCharacterSize(24);
 	text2.setFillColor(sf::Color::White);
 	text2.setStyle(sf::Text::Bold);
-	//text2.setPosition(185.0f, 380.0f);
 	text2.setOrigin(text2.getLocalBounds().left + text2.getLocalBounds().width / 2.0f,
 		text2.getLocalBounds().top + text2.getLocalBounds().height / 2.0f);
 	text2.setPosition((float)(window->getSize().x / 2), 380.0f);

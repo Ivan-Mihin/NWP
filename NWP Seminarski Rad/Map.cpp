@@ -1,9 +1,7 @@
-#pragma once
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <string>
 #include "Map.h"
-#include "Player.h"
 
 Map::Map()
 {

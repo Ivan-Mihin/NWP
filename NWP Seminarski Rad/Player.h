@@ -1,6 +1,7 @@
 #pragma once
 #include "Audio.h"
 #include "Pokemon.h"
+#include "Map.h"
 
 class Player
 {

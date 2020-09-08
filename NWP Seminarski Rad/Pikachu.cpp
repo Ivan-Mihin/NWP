@@ -2,6 +2,7 @@
 
 Pikachu::Pikachu()
 {
+	name = "PIKACHU";
 	hit_points = 40;
 	move1 = 4;
 	move2 = 10;
@@ -37,4 +38,9 @@ int Pikachu::getMove(int move)
 		return move4;
 	}
 	}
+}
+
+std::string Pikachu::getName()
+{
+	return name;
 }
