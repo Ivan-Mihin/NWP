@@ -18,12 +18,12 @@ int main()
 
 	Intro intro;
 	intro.introSequence(&window);
-	intro.choosePokemon(&window);
+	
+	player.pokemon.setPokemonStats(intro.choosePokemon(&window));
 
 	// Creating a Map object and loading a map into it
 	Map loaded_map;
 	audio.changeMusic("Audio/Map1Music.ogg", 25);
-
 
 	while (window.isOpen())
 	{

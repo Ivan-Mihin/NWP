@@ -2,14 +2,17 @@
 #include <SFML/Graphics.hpp>
 
 class Pokemon
-{
-	int hit_points;
-	
+{	
+	int move1;
+	int move2;
+	int move3;
+	int move4;
+
 public:
 	Pokemon();
 	~Pokemon() {}
 
-	sf::Texture texture;
+	int hit_points;
 	sf::Sprite sprite;
 	enum pokemon_enum
 	{
@@ -18,4 +21,6 @@ public:
 		SQUIRTLE = 2,
 		PIKACHU = 3
 	};
+
+	void setPokemon(int choice);
 };

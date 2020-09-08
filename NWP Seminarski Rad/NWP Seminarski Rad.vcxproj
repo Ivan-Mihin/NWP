@@ -160,20 +160,28 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Charmander.cpp" />
     <ClCompile Include="Intro.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Pikachu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Pokemon.cpp" />
+    <ClCompile Include="Bulbasaur.cpp" />
+    <ClCompile Include="Squirtle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Battle.h" />
+    <ClInclude Include="Bulbasaur.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Charmander.h" />
     <ClInclude Include="Intro.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Pikachu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="Squirtle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
