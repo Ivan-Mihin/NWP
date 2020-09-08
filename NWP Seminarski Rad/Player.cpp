@@ -1,5 +1,7 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Battle.h"
 #include "Map.h"
 #include "Player.h"
 
@@ -135,6 +137,12 @@ void Player::movement(Map* loaded_map, Audio* audio)
 
 					break;
 				}
+				}
+
+				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
+				{
+					Battle battle;
+					battle.start();
 				}
 
 				is_moving = false;

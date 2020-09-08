@@ -11,9 +11,6 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(640, 480), "Pokemon");
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(350.0f, 350.0f));
 
-	// Creating a Map object and loading a map into it
-	Map loaded_map;
-
 	// Playing music
 	Audio audio;
 
@@ -21,6 +18,12 @@ int main()
 
 	Intro intro;
 	intro.introSequence(&window);
+	intro.choosePokemon(&window);
+
+	// Creating a Map object and loading a map into it
+	Map loaded_map;
+	audio.changeMusic("Audio/Map1Music.ogg", 25);
+
 
 	while (window.isOpen())
 	{

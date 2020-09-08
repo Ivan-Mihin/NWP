@@ -1,5 +1,6 @@
 #pragma once
 #include "Audio.h"
+#include "Pokemon.h"
 
 class Player
 {
@@ -18,6 +19,7 @@ public:
 	~Player() {};
 
 	sf::Sprite sprite;
+	Pokemon pokemon;
 
 	void keyboardInput(unsigned int** tile_information);
 	void movement(Map* loaded_map, Audio* audio);
