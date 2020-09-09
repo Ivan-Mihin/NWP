@@ -17,7 +17,8 @@ void Pokemon::setPokemon(int choice)
 		move2 = bulbasaur.getMove(2);
 		move3 = bulbasaur.getMove(3);
 		move4 = bulbasaur.getMove(4);
-		sprite = bulbasaur.sprite;
+		texture = bulbasaur.texture;
+		sprite.setTexture(texture);
 		break;
 	}
 
@@ -30,7 +31,8 @@ void Pokemon::setPokemon(int choice)
 		move2 = charmander.getMove(2);
 		move3 = charmander.getMove(3);
 		move4 = charmander.getMove(4);
-		sprite = charmander.sprite;
+		texture = charmander.texture;
+		sprite.setTexture(texture);
 		break;
 	}
 
@@ -43,7 +45,8 @@ void Pokemon::setPokemon(int choice)
 		move2 = squirtle.getMove(2);
 		move3 = squirtle.getMove(3);
 		move4 = squirtle.getMove(4);
-		sprite = squirtle.sprite;
+		texture = squirtle.texture;
+		sprite.setTexture(texture);
 		break;
 	}
 
@@ -56,7 +59,8 @@ void Pokemon::setPokemon(int choice)
 		move2 = pikachu.getMove(2);
 		move3 = pikachu.getMove(3);
 		move4 = pikachu.getMove(4);
-		sprite = pikachu.sprite;
+		texture = pikachu.texture;
+		sprite.setTexture(texture);
 		break;
 	}
 	}

@@ -14,6 +14,7 @@ public:
 	~Pokemon() {}
 
 	int hit_points;
+	sf::Texture texture;
 	sf::Sprite sprite;
 	enum pokemon_enum
 	{
