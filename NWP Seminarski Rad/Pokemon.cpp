@@ -1,17 +1,18 @@
+#pragma once
 #include "Pokemon.h"
 #include "Bulbasaur.h"
 #include "Charmander.h"
 #include "Squirtle.h"
 #include "Pikachu.h"
 
-void Pokemon::setPokemon(int choice) 
+void Pokemon::setPokemon(int choice)
 {
 	switch (choice)
 	{
 	case BULBASAUR:
 	{
 		Bulbasaur bulbasaur;
-		name = bulbasaur.getName();
+		name = "BULBASAUR";
 		hit_points = bulbasaur.getHitPoints();
 		move1 = bulbasaur.getMove(1);
 		move2 = bulbasaur.getMove(2);
@@ -25,7 +26,7 @@ void Pokemon::setPokemon(int choice)
 	case CHARMANDER:
 	{
 		Charmander charmander;
-		name = charmander.getName();
+		name = "CHARMANDER";
 		hit_points = charmander.getHitPoints();
 		move1 = charmander.getMove(1);
 		move2 = charmander.getMove(2);
@@ -39,7 +40,7 @@ void Pokemon::setPokemon(int choice)
 	case SQUIRTLE:
 	{
 		Squirtle squirtle;
-		name = squirtle.getName();
+		name = "SQUIRTLE";
 		hit_points = squirtle.getHitPoints();
 		move1 = squirtle.getMove(1);
 		move2 = squirtle.getMove(2);
@@ -53,7 +54,7 @@ void Pokemon::setPokemon(int choice)
 	case PIKACHU:
 	{
 		Pikachu pikachu;
-		name = pikachu.getName();
+		name = "PIKACHU";
 		hit_points = pikachu.getHitPoints();
 		move1 = pikachu.getMove(1);
 		move2 = pikachu.getMove(2);

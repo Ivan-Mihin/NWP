@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "Pokemon.h"
 
 class Battle 
@@ -13,6 +14,7 @@ public:
 	~Battle() {}
 
 	Pokemon pokemon;
+	int chosen_pokemon;
 	sf::Sprite background;
 
 	void start(Pokemon pokemon);

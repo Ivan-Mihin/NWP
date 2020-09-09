@@ -2,7 +2,6 @@
 
 Squirtle::Squirtle()
 {
-	name = "SQUIRTLE";
 	hit_points = 40;
 	move1 = 3;
 	move2 = 6;
@@ -38,9 +37,4 @@ int Squirtle::getMove(int move)
 		return move4;
 	}
 	}
-}
-
-std::string Squirtle::getName()
-{
-	return name;
 }

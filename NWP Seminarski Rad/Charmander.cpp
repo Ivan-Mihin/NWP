@@ -2,7 +2,6 @@
 
 Charmander::Charmander()
 {
-	name = "CHARMANDER";
 	hit_points = 35;
 	move1 = 4;
 	move2 = 7;
@@ -38,9 +37,4 @@ int Charmander::getMove(int move)
 		return move4;
 	}
 	}
-}
-
-std::string Charmander::getName()
-{
-	return name;
 }

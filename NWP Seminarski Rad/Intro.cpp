@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "Button.h"
 #include "Intro.h"
@@ -19,9 +20,9 @@ void Intro::introSequence(sf::RenderWindow* window)
 	text1.setCharacterSize(24);
 	text1.setFillColor(sf::Color::White);
 	text1.setStyle(sf::Text::Bold);
-	text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f, 
+	text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f,
 		text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
-	text1.setPosition((float) (window->getSize().x / 2), 350.0f);
+	text1.setPosition((float)(window->getSize().x / 2), 350.0f);
 
 	text2.setFont(font);
 	text2.setString("TO CONTINUE");
@@ -54,7 +55,7 @@ void Intro::introSequence(sf::RenderWindow* window)
 				return;
 			}
 
-			case game_event.MouseButtonPressed: 
+			case game_event.MouseButtonPressed:
 			{
 				return;
 			}
@@ -71,7 +72,7 @@ void Intro::introSequence(sf::RenderWindow* window)
 				towards_gray = true;
 			}
 		}
-		
+
 		if (towards_gray)
 		{
 			++rgb_value;
@@ -82,7 +83,7 @@ void Intro::introSequence(sf::RenderWindow* window)
 				towards_gray = false;
 			}
 		}
-		
+
 		text1.setFillColor(sf::Color(rgb_value, rgb_value, rgb_value));
 		text2.setFillColor(sf::Color(rgb_value, rgb_value, rgb_value));
 
@@ -105,8 +106,11 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 	Button confirm_button("Textures/Button.png", 250, 150, 210.0f, 325.0f, false);
 
 	text1.setFillColor(sf::Color::White);
-	text1.setString("");
 	text1.setCharacterSize(36);
+	text1.setString("CHOOSE A POKEMON");
+	text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f,
+		text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
+	text1.setPosition((float)(window->getSize().x / 2), 75.0f);
 
 	text2.setFillColor(sf::Color::White);
 	text2.setString("");
@@ -138,7 +142,7 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 				window->close();
 				break;
 			}
-			
+
 			case game_event.MouseButtonPressed:
 			{
 				sf::Vector2i mouse_position = sf::Mouse::getPosition(*window);
@@ -196,7 +200,7 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 			}
 			}
 		}
-		
+
 		window->clear();
 		window->draw(bulbasaur_button.sprite);
 		window->draw(charmander_button.sprite);
