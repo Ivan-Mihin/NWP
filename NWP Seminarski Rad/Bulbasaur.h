@@ -9,12 +9,12 @@ class Bulbasaur
 	int move2;
 	int move3;
 	int move4;
-	sf::Texture texture;
 
 public:
 	Bulbasaur();
 	~Bulbasaur() {};
 
+	sf::Texture texture;
 	sf::Sprite sprite;
 	int getHitPoints();
 	int getMove(int move);

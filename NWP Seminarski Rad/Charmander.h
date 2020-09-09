@@ -9,12 +9,12 @@ class Charmander
 	int move2;
 	int move3;
 	int move4;
-	sf::Texture texture;
 
 public:
 	Charmander();
 	~Charmander() {};
 
+	sf::Texture texture;
 	sf::Sprite sprite;
 	int getHitPoints();
 	int getMove(int move);
