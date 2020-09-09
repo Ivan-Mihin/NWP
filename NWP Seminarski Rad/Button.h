@@ -11,6 +11,7 @@ public:
 	~Button() {}
 
 	bool isEnabled;
+	sf::Text text;
 	sf::Sprite sprite;
 
 	bool isClicked(sf::Vector2i mouse_position);

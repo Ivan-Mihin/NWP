@@ -20,7 +20,7 @@ void Intro::introSequence(sf::RenderWindow* window)
 	text1.setFillColor(sf::Color::White);
 	text1.setStyle(sf::Text::Bold);
 	text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f, 
-					text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
+		text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
 	text1.setPosition((float) (window->getSize().x / 2), 350.0f);
 
 	text2.setFont(font);
@@ -119,10 +119,14 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 
 		if (confirm_button.isEnabled)
 		{
-			text2.setString("CONFIRM");
-			text2.setOrigin(text2.getLocalBounds().left + text2.getLocalBounds().width / 2.0f,
-				text2.getLocalBounds().top + text2.getLocalBounds().height / 2.0f);
-			text2.setPosition((float)(window->getSize().x / 2), 380.0f);
+			confirm_button.text.setFont(font);
+			confirm_button.text.setString("CONFIRM");
+			confirm_button.text.setCharacterSize(24);
+			confirm_button.text.setFillColor(sf::Color::White);
+			confirm_button.text.setStyle(sf::Text::Bold);
+			confirm_button.text.setOrigin(confirm_button.text.getLocalBounds().left + confirm_button.text.getLocalBounds().width / 2.0f,
+				confirm_button.text.getLocalBounds().top + confirm_button.text.getLocalBounds().height / 2.0f);
+			confirm_button.text.setPosition((float)(window->getSize().x / 2), 380.0f);
 		}
 
 		while (window->pollEvent(game_event))
@@ -202,6 +206,7 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 		if (confirm_button.isEnabled)
 		{
 			window->draw(confirm_button.sprite);
+			window->draw(confirm_button.text);
 		}
 
 		window->draw(text1);
