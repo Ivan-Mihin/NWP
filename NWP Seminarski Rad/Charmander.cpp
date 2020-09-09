@@ -8,7 +8,7 @@ Charmander::Charmander()
 	move2 = 7;
 	move3 = 12;
 	move4 = 18;
-	texture.loadFromFile("Pokemon/Bulbasaur.png", sf::IntRect(128, 0, 128, 128));
+	texture.loadFromFile("Pokemon/Charmander.png", sf::IntRect(128, 0, 128, 128));
 	sprite.setTexture(texture);
 }
 
