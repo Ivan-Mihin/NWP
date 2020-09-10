@@ -4,9 +4,6 @@
 
 class Battle 
 {
-	sf::Font font;
-	sf::Text text1;
-	sf::Text text2;
 	sf::Texture texture;
 
 public:
@@ -19,4 +16,5 @@ public:
 
 	void start(Pokemon pokemon);
 	void pokemonSelect();
+	void enemyAttack(sf::RenderWindow* battle_window, Pokemon* pokemon, sf::Text* player_pokemon_health, sf::Text* enemy_pokemon_health);
 };

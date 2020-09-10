@@ -92,6 +92,8 @@ void Player::keyboardInput(unsigned int** tile_information)
 
 void Player::movement(Map* loaded_map, Audio* audio)
 {
+	std::srand(std::time(nullptr));
+
 	if (is_moving == true)
 	{
 		if (move[UP] == true)
@@ -141,8 +143,11 @@ void Player::movement(Map* loaded_map, Audio* audio)
 
 				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
 				{
-					Battle battle;
-					battle.start(pokemon);
+					if (rand() % 5 == 0)
+					{
+						Battle battle;
+						battle.start(pokemon);
+					}
 				}
 
 				is_moving = false;
@@ -185,6 +190,15 @@ void Player::movement(Map* loaded_map, Audio* audio)
 				{
 					break;
 				}
+				}
+
+				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
+				{
+					if (rand() % 5 == 0)
+					{
+						Battle battle;
+						battle.start(pokemon);
+					}
 				}
 
 				is_moving = false;
@@ -237,6 +251,15 @@ void Player::movement(Map* loaded_map, Audio* audio)
 				}
 				}
 
+				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
+				{
+					if (rand() % 5 == 0)
+					{
+						Battle battle;
+						battle.start(pokemon);
+					}
+				}
+
 				is_moving = false;
 				move[DOWN] = false;
 			}
@@ -277,6 +300,15 @@ void Player::movement(Map* loaded_map, Audio* audio)
 				{
 					break;
 				}
+				}
+
+				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
+				{
+					if (rand() % 5 == 0)
+					{
+						Battle battle;
+						battle.start(pokemon);
+					}
 				}
 
 				is_moving = false;
