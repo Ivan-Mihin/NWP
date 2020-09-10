@@ -99,11 +99,11 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 {
 	Pokemon pokemon;
 
-	Button bulbasaur_button("Textures/Bulbasaur_Button.png", 128, 128, 25.0f, 150.0f, true);
-	Button charmander_button("Textures/Charmander_Button.png", 128, 128, 178.0f, 150.0f, true);
-	Button squirtle_button("Textures/Squirtle_Button.png", 128, 128, 331.0f, 150.0f, true);
-	Button pikachu_button("Textures/Pikachu_Button.png", 128, 128, 484.0f, 150.0f, true);
-	Button confirm_button("Textures/Button.png", 250, 150, 210.0f, 325.0f, false);
+	Button bulbasaur_button("Textures/Bulbasaur_Button.png", 128, 128, 25.0f, 150.0f);
+	Button charmander_button("Textures/Charmander_Button.png", 128, 128, 178.0f, 150.0f);
+	Button squirtle_button("Textures/Squirtle_Button.png", 128, 128, 331.0f, 150.0f);
+	Button pikachu_button("Textures/Pikachu_Button.png", 128, 128, 484.0f, 150.0f);
+	Button confirm_button("Textures/Button.png", 250, 150, 210.0f, 325.0f);
 
 	text1.setFillColor(sf::Color::White);
 	text1.setCharacterSize(36);
@@ -116,21 +116,15 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 	text2.setString("");
 
 	int choice;
+	bool confirm_button_is_enabled = false;
 
 	while (window->isOpen())
 	{
 		sf::Event game_event;
 
-		if (confirm_button.isEnabled)
+		if (confirm_button_is_enabled)
 		{
-			confirm_button.text.setFont(font);
-			confirm_button.text.setString("CONFIRM");
-			confirm_button.text.setCharacterSize(24);
-			confirm_button.text.setFillColor(sf::Color::White);
-			confirm_button.text.setStyle(sf::Text::Bold);
-			confirm_button.text.setOrigin(confirm_button.text.getLocalBounds().left + confirm_button.text.getLocalBounds().width / 2.0f,
-				confirm_button.text.getLocalBounds().top + confirm_button.text.getLocalBounds().height / 2.0f);
-			confirm_button.text.setPosition((float)(window->getSize().x / 2), 380.0f);
+			confirm_button.textInitialize(&font, "CONFIRM", 24, sf::Color::White);
 		}
 
 		while (window->pollEvent(game_event))
@@ -156,7 +150,7 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 							text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
 						text1.setPosition((float)(window->getSize().x / 2), 75.0f);
 						choice = pokemon.BULBASAUR;
-						confirm_button.isEnabled = true;
+						confirm_button_is_enabled = true;
 					}
 
 					if (charmander_button.isClicked(mouse_position))
@@ -166,7 +160,7 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 							text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
 						text1.setPosition((float)(window->getSize().x / 2), 75.0f);
 						choice = pokemon.CHARMANDER;
-						confirm_button.isEnabled = true;
+						confirm_button_is_enabled = true;
 					}
 
 					if (squirtle_button.isClicked(mouse_position))
@@ -176,7 +170,7 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 							text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
 						text1.setPosition((float)(window->getSize().x / 2), 75.0f);
 						choice = pokemon.SQUIRTLE;
-						confirm_button.isEnabled = true;
+						confirm_button_is_enabled = true;
 					}
 
 					if (pikachu_button.isClicked(mouse_position))
@@ -186,10 +180,10 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 							text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
 						text1.setPosition((float)(window->getSize().x / 2), 75.0f);
 						choice = pokemon.PIKACHU;
-						confirm_button.isEnabled = true;
+						confirm_button_is_enabled = true;
 					}
 
-					if (confirm_button.isEnabled)
+					if (confirm_button_is_enabled)
 					{
 						if (confirm_button.isClicked(mouse_position))
 						{
@@ -207,7 +201,7 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 		window->draw(squirtle_button.sprite);
 		window->draw(pikachu_button.sprite);
 
-		if (confirm_button.isEnabled)
+		if (confirm_button_is_enabled)
 		{
 			window->draw(confirm_button.sprite);
 			window->draw(confirm_button.text);
