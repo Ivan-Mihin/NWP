@@ -2,11 +2,20 @@
 
 Charmander::Charmander()
 {
-	hit_points = 35;
-	move1 = 4;
-	move2 = 7;
-	move3 = 12;
-	move4 = 18;
+	hit_points = 40;
+
+	move1.value = 10;
+	move1.name = "TACKLE";
+
+	move2.value = 10;
+	move2.name = "HEAL";
+
+	move3.value = 8;
+	move3.name = "EMBER";
+
+	move4.value = 15;
+	move4.name = "FLAMETHROWER";
+
 	texture.loadFromFile("Pokemon/Charmander.png", sf::IntRect(128, 0, 128, 128));
 	sprite.setTexture(texture);
 }
@@ -16,7 +25,7 @@ int Charmander::getHitPoints()
 	return hit_points;
 }
 
-int Charmander::getMove(int move)
+Move Charmander::getMove(int move)
 {
 	switch (move)
 	{

@@ -1,12 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Move.h"
 
 class Pokemon
 {	
-	int move1;
-	int move2;
-	int move3;
-	int move4;
 	std::string name;
 
 public:
@@ -14,6 +11,10 @@ public:
 	~Pokemon() {}
 
 	int hit_points;
+	Move move1;
+	Move move2;
+	Move move3;
+	Move move4;
 	sf::Texture texture;
 	sf::Sprite sprite;
 	enum pokemon_enum
