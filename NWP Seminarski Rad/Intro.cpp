@@ -9,33 +9,22 @@ Intro::Intro()
 	texture.loadFromFile("Textures/Intro.jpg");
 	sprite.setTexture(texture);
 	sprite.setPosition(0.0f, 0.0f);
-
-	font.loadFromFile("Fonts/Pokemon_GB.ttf");
 }
 
 void Intro::introSequence(sf::RenderWindow* window)
 {
-	text1.setFont(font);
-	text1.setString("PRESS ANY BUTTON");
-	text1.setCharacterSize(24);
-	text1.setFillColor(sf::Color::White);
-	text1.setStyle(sf::Text::Bold);
-	text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f,
-		text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
-	text1.setPosition((float)(window->getSize().x / 2), 350.0f);
+	sf::Font font;
+	font.loadFromFile("Fonts/Pokemon_GB.ttf");
 
-	text2.setFont(font);
-	text2.setString("TO CONTINUE");
-	text2.setCharacterSize(24);
-	text2.setFillColor(sf::Color::White);
-	text2.setStyle(sf::Text::Bold);
-	text2.setOrigin(text2.getLocalBounds().left + text2.getLocalBounds().width / 2.0f,
-		text2.getLocalBounds().top + text2.getLocalBounds().height / 2.0f);
-	text2.setPosition((float)(window->getSize().x / 2), 380.0f);
+	sf::Text text1;
+	textInitialization(&font, &text1, 24, "PRESS ANY BUTTON", sf::Color::White, (float)(window->getSize().x / 2), 350.0f);
 
-	rgb_value = 255;
-	towards_white = true;
-	towards_gray = false;
+	sf::Text text2;
+	textInitialization(&font, &text2, 24, "TO CONTINUE", sf::Color::White, (float)(window->getSize().x / 2), 380.0f);
+
+	int rgb_value = 0;				// RGB value used for coloring text 
+	bool towards_white = true;		// Flag used for increasing RGB value towards 255
+	bool towards_gray = false;		// Flag used for decreasing RGB value towards 
 
 	while (window->isOpen())
 	{
@@ -62,22 +51,24 @@ void Intro::introSequence(sf::RenderWindow* window)
 			}
 		}
 
+		// Color of text going from gray to white
 		if (towards_white)
 		{
-			--rgb_value;
+			++rgb_value;
 
-			if (rgb_value == 100)
+			if (rgb_value == 255)
 			{
 				towards_white = false;
 				towards_gray = true;
 			}
 		}
 
+		// Color of text going from white to gray
 		if (towards_gray)
 		{
-			++rgb_value;
+			--rgb_value;
 
-			if (rgb_value == 255)
+			if (rgb_value == 100)
 			{
 				towards_white = true;
 				towards_gray = false;
@@ -97,7 +88,8 @@ void Intro::introSequence(sf::RenderWindow* window)
 
 int Intro::choosePokemon(sf::RenderWindow* window)
 {
-	Pokemon pokemon;
+	sf::Font font;
+	font.loadFromFile("Fonts/Pokemon_GB.ttf");
 
 	Button bulbasaur_button("Textures/Bulbasaur_Button.png", 128, 128, 25.0f, 150.0f);
 	Button charmander_button("Textures/Charmander_Button.png", 128, 128, 178.0f, 150.0f);
@@ -105,18 +97,11 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 	Button pikachu_button("Textures/Pikachu_Button.png", 128, 128, 484.0f, 150.0f);
 	Button confirm_button("Textures/Button.png", 250, 150, 210.0f, 325.0f);
 
-	text1.setFillColor(sf::Color::White);
-	text1.setCharacterSize(36);
-	text1.setString("CHOOSE A POKEMON");
-	text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f,
-		text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
-	text1.setPosition((float)(window->getSize().x / 2), 75.0f);
+	sf::Text text;
+	textInitialization(&font, &text, 36, "CHOOSE A POKEMON", sf::Color::White, (float)(window->getSize().x / 2), 75.0f);
 
-	text2.setFillColor(sf::Color::White);
-	text2.setString("");
-
-	int choice;
-	bool confirm_button_is_enabled = false;
+	int choice;									// Flag for the chosen pokemon
+	bool confirm_button_is_enabled = false;		// Flag that hides confirm button until a choice is made
 
 	while (window->isOpen())
 	{
@@ -124,7 +109,7 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 
 		if (confirm_button_is_enabled)
 		{
-			confirm_button.textInitialize(&font, "CONFIRM", 24, sf::Color::White);
+			confirm_button.textInitialization(&font, 24, "CONFIRM", sf::Color::White);
 		}
 
 		while (window->pollEvent(game_event))
@@ -145,41 +130,29 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 				{
 					if (bulbasaur_button.isClicked(mouse_position))
 					{
-						text1.setString("BULBASAUR");
-						text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f,
-							text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
-						text1.setPosition((float)(window->getSize().x / 2), 75.0f);
-						choice = pokemon.BULBASAUR;
+						textUpdate(&text, "BULBASAUR", (float)(window->getSize().x / 2), 75.0f);
+						choice = BULBASAUR;
 						confirm_button_is_enabled = true;
 					}
 
 					if (charmander_button.isClicked(mouse_position))
 					{
-						text1.setString("CHARMANDER");
-						text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f,
-							text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
-						text1.setPosition((float)(window->getSize().x / 2), 75.0f);
-						choice = pokemon.CHARMANDER;
+						textUpdate(&text, "CHARMANDER", (float)(window->getSize().x / 2), 75.0f);
+						choice = CHARMANDER;
 						confirm_button_is_enabled = true;
 					}
 
 					if (squirtle_button.isClicked(mouse_position))
 					{
-						text1.setString("SQUIRTLE");
-						text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f,
-							text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
-						text1.setPosition((float)(window->getSize().x / 2), 75.0f);
-						choice = pokemon.SQUIRTLE;
+						textUpdate(&text, "SQUIRTLE", (float)(window->getSize().x / 2), 75.0f);
+						choice = SQUIRTLE;
 						confirm_button_is_enabled = true;
 					}
 
 					if (pikachu_button.isClicked(mouse_position))
 					{
-						text1.setString("PIKACHU");
-						text1.setOrigin(text1.getLocalBounds().left + text1.getLocalBounds().width / 2.0f,
-							text1.getLocalBounds().top + text1.getLocalBounds().height / 2.0f);
-						text1.setPosition((float)(window->getSize().x / 2), 75.0f);
-						choice = pokemon.PIKACHU;
+						textUpdate(&text, "PIKACHU", (float)(window->getSize().x / 2), 75.0f);
+						choice = PIKACHU;
 						confirm_button_is_enabled = true;
 					}
 
@@ -207,8 +180,30 @@ int Intro::choosePokemon(sf::RenderWindow* window)
 			window->draw(confirm_button.text);
 		}
 
-		window->draw(text1);
-		window->draw(text2);
+		window->draw(text);
 		window->display();
 	}
+}
+
+void Intro::textInitialization(sf::Font* font, sf::Text* text, int character_size, std::string string, sf::Color color, float x, float y)
+{
+	text->setFont(*font);
+	text->setCharacterSize(character_size);
+	text->setString(string);
+	text->setFillColor(color);
+
+	text->setOrigin(text->getLocalBounds().left + text->getLocalBounds().width / 2.0f,
+		text->getLocalBounds().top + text->getLocalBounds().height / 2.0f);
+
+	text->setPosition(x, y);
+}
+
+void Intro::textUpdate(sf::Text* text, std::string string, int x, float y)
+{
+	text->setString(string);
+
+	text->setOrigin(text->getLocalBounds().left + text->getLocalBounds().width / 2.0f,
+		text->getLocalBounds().top + text->getLocalBounds().height / 2.0f);
+
+	text->setPosition(x, y);
 }
