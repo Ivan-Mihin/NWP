@@ -119,3 +119,30 @@ void Map::loadMap(std::string mapName)
 
 	file.close();
 }
+
+void Map::drawTiles(sf::RenderWindow* window, float player_x, float player_y)
+{
+	int offset = 7;
+	sf::Vector2i first_drawn_tile = sf::Vector2i(player_x / tile_size - offset, player_y / tile_size - offset);
+
+	if (first_drawn_tile.x < 0)
+	{
+		first_drawn_tile = sf::Vector2i(0, player_y / tile_size - offset);
+	}
+
+	if (first_drawn_tile.y < 0)
+	{
+		first_drawn_tile = sf::Vector2i(player_x / tile_size - offset, 0);
+	}
+
+	for (int w = first_drawn_tile.x; w < first_drawn_tile.x + offset * 2 + 1; ++w)
+	{
+		for (int h = first_drawn_tile.y; h < first_drawn_tile.y + offset * 2 + 1; ++h)
+		{
+			tile.setPosition(w * tile_size, h * tile_size);
+			tile.setTextureRect(sf::IntRect(map[w][h].x * tile_size,
+				map[w][h].y * tile_size, tile_size, tile_size));
+			window->draw(tile);
+		}
+	}
+}

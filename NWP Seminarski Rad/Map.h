@@ -33,4 +33,5 @@ public:
 	unsigned int mapHeight();							// Method that returns map width
 	unsigned int mapHeight(std::string mapName);		// Method that calculates and returns map's width
 	void loadMap(std::string mapName);					// Method that loads tile information from a text file to a 2D array
+	void drawTiles(sf::RenderWindow* window, float player_x, float player_y);
 };
