@@ -143,7 +143,7 @@ void Player::movement(Map* loaded_map, Audio* audio)
 
 				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
 				{
-					if (rand() % 5 == 0)
+					if (rand() % 4 == 0)
 					{
 						Battle battle;
 						battle.start(pokemon);
@@ -194,7 +194,7 @@ void Player::movement(Map* loaded_map, Audio* audio)
 
 				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
 				{
-					if (rand() % 5 == 0)
+					if (rand() % 4 == 0)
 					{
 						Battle battle;
 						battle.start(pokemon);
@@ -253,7 +253,7 @@ void Player::movement(Map* loaded_map, Audio* audio)
 
 				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
 				{
-					if (rand() % 5 == 0)
+					if (rand() % 4 == 0)
 					{
 						Battle battle;
 						battle.start(pokemon);
@@ -304,7 +304,7 @@ void Player::movement(Map* loaded_map, Audio* audio)
 
 				if (loaded_map->tile_information[next_tile.x / tile_size][next_tile.y / tile_size] == 5)
 				{
-					if (rand() % 5 == 0)
+					if (rand() % 4 == 0)
 					{
 						Battle battle;
 						battle.start(pokemon);

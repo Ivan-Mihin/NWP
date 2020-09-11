@@ -19,11 +19,11 @@ bool Button::isClicked(sf::Vector2i mouse_position)
 	return box.contains(mouse_position.x, mouse_position.y);
 }
 
-void Button::textInitialize(sf::Font* font, std::string string, int character_size, sf::Color color)
+void Button::textInitialization(sf::Font* font, int character_size, std::string string, sf::Color color)
 {
 	text.setFont(*font);
-	text.setString(string);
 	text.setCharacterSize(character_size);
+	text.setString(string);
 	text.setFillColor(color);
 
 	text.setOrigin(text.getLocalBounds().left + text.getLocalBounds().width / 2.0f,

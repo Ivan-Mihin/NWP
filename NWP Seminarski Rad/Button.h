@@ -15,5 +15,5 @@ public:
 	sf::Sprite sprite;
 
 	bool isClicked(sf::Vector2i mouse_position);
-	void textInitialize(sf::Font* font, std::string string, int character_size, sf::Color color);
+	void textInitialization(sf::Font* font, int character_size, std::string string, sf::Color color);
 };
