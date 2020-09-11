@@ -14,6 +14,7 @@ void Pokemon::setPokemon(int choice)
 		Bulbasaur bulbasaur;
 		name = "BULBASAUR";
 		hit_points = bulbasaur.getHitPoints();
+		type = bulbasaur.getType();
 		move1 = bulbasaur.getMove(1);
 		move2 = bulbasaur.getMove(2);
 		move3 = bulbasaur.getMove(3);
@@ -28,6 +29,7 @@ void Pokemon::setPokemon(int choice)
 		Charmander charmander;
 		name = "CHARMANDER";
 		hit_points = charmander.getHitPoints();
+		type = charmander.getType();
 		move1 = charmander.getMove(1);
 		move2 = charmander.getMove(2);
 		move3 = charmander.getMove(3);
@@ -42,6 +44,7 @@ void Pokemon::setPokemon(int choice)
 		Squirtle squirtle;
 		name = "SQUIRTLE";
 		hit_points = squirtle.getHitPoints();
+		type = squirtle.getType();
 		move1 = squirtle.getMove(1);
 		move2 = squirtle.getMove(2);
 		move3 = squirtle.getMove(3);
@@ -56,6 +59,7 @@ void Pokemon::setPokemon(int choice)
 		Pikachu pikachu;
 		name = "PIKACHU";
 		hit_points = pikachu.getHitPoints();
+		type = pikachu.getType();
 		move1 = pikachu.getMove(1);
 		move2 = pikachu.getMove(2);
 		move3 = pikachu.getMove(3);

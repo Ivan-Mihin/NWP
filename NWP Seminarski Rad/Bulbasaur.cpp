@@ -1,18 +1,24 @@
 #include "Bulbasaur.h"
+#include "Pokemon.h"
 
 Bulbasaur::Bulbasaur()
 {
 	hit_points = 40;
+	type = GRASS;
 
+	move1.type = NORMAL;
 	move1.value = 10;
 	move1.name = "TACKLE";
 
-	move2.value = 10;
+	move2.type = NORMAL;
+	move2.value = 8;
 	move2.name = "HEAL";
 
+	move3.type = GRASS;
 	move3.value = 8;
 	move3.name = "RAZOR LEAF";
 
+	move4.type = GRASS;
 	move4.value = 15;
 	move4.name = "VINE WHIP";
 
@@ -46,4 +52,9 @@ Move Bulbasaur::getMove(int move)
 		return move4;
 	}
 	}
+}
+
+int Bulbasaur::getType()
+{
+	return type;
 }

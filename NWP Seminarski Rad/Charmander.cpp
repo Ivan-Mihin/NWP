@@ -1,18 +1,24 @@
 #include "Charmander.h"
+#include "Pokemon.h"
 
 Charmander::Charmander()
 {
 	hit_points = 40;
+	type = FIRE;
 
+	move1.type = NORMAL;
 	move1.value = 10;
 	move1.name = "TACKLE";
 
-	move2.value = 10;
+	move2.type = NORMAL;
+	move2.value = 8;
 	move2.name = "HEAL";
 
+	move3.type = FIRE;
 	move3.value = 8;
 	move3.name = "EMBER";
 
+	move4.type = FIRE;
 	move4.value = 15;
 	move4.name = "FLAMETHROWER";
 
@@ -46,4 +52,9 @@ Move Charmander::getMove(int move)
 		return move4;
 	}
 	}
+}
+
+int Charmander::getType()
+{
+	return type;
 }

@@ -1,18 +1,24 @@
 #include "Pikachu.h"
+#include "Pokemon.h"
 
 Pikachu::Pikachu()
 {
 	hit_points = 40;
+	type = ELECTRIC;
 
+	move1.type = NORMAL;
 	move1.value = 10;
 	move1.name = "TACKLE";
 
-	move2.value = 10;
+	move2.type = NORMAL;
+	move2.value = 8;
 	move2.name = "HEAL";
 
+	move3.type = ELECTRIC;
 	move3.value = 8;
 	move3.name = "VOLT TACKLE";
 
+	move4.type = ELECTRIC;
 	move4.value = 15;
 	move4.name = "THUNDERSHOCK";
 
@@ -46,4 +52,9 @@ Move Pikachu::getMove(int move)
 		return move4;
 	}
 	}
+}
+
+int Pikachu::getType()
+{
+	return type;
 }

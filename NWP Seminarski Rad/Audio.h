@@ -3,13 +3,14 @@
 
 class Audio
 {
-	std::string path;
+	std::string path;		// Path to the .ogg file for music
 	sf::Music music;
 
 public:
 	Audio();
 	~Audio() {}
 
-	void changeMusic(std::string path);
-	void changeMusic(std::string path, int volume);
+	// Change music
+	void changeMusic(std::string path);					// Change music
+	void changeMusic(std::string path, int volume);		// Change music with ability to set volume
 };

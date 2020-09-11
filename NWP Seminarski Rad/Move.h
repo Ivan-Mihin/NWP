@@ -7,6 +7,8 @@ public:
 	Move() {};
 	~Move() {};
 
+	int type;
 	int value;
 	std::string name;
+
 };
