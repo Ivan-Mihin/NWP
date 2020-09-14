@@ -253,9 +253,9 @@ void Battle::playerTurn(Pokemon pokemon, Button move1_button, Button move2_butto
 	if (move2_button.isClicked(mouse_position))
 	{
 		pokemon.hit_points += pokemon.move2.value;
-		player_pokemon_health.setString("Health: " + std::to_string(pokemon.hit_points) + ".");
+		player_pokemon_health.setString("Health: " + std::to_string(pokemon.hit_points));
 
-		chat_text.setString(pokemon.getName() + " USED " + pokemon.move2.name);
+		chat_text.setString(pokemon.getName() + " USED " + pokemon.move2.name + ".");
 		chat_text2.setString("");
 	}
 
@@ -318,9 +318,9 @@ void Battle::enemyTurn(sf::RenderWindow* battle_window, Pokemon* pokemon)
 	case 2:
 	{
 		this->pokemon.hit_points += this->pokemon.move2.value;
-		enemy_pokemon_health.setString("Health: " + std::to_string(this->pokemon.hit_points) + ".");
+		enemy_pokemon_health.setString("Health: " + std::to_string(this->pokemon.hit_points));
 
-		chat_text.setString(this->pokemon.getName() + " USED " + this->pokemon.move2.name);
+		chat_text.setString(this->pokemon.getName() + " USED " + this->pokemon.move2.name + ".");
 		chat_text2.setString("");
 		break;
 	}
