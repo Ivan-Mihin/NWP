@@ -18,7 +18,7 @@ void Battle::start(Pokemon pokemon)
 	sf::RenderWindow battle_window(sf::VideoMode(640, 480), "Battle", sf::Style::Titlebar);
 
 	pokemonSelect();
-
+	
 	sf::Font font;
 	font.loadFromFile("Fonts/Pokemon_GB.ttf");
 
