@@ -36,8 +36,6 @@ public:
 	sf::Texture texture;	// Texture for pokemon
 	sf::Sprite sprite;		// Sprite for pokemon
 
-	
-
 	void setPokemon(int choice);	// Sets pokemon stats
 	std::string getName();			// Returns pokemon name
 };

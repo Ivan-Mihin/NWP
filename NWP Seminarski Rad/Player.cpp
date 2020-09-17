@@ -27,7 +27,7 @@ Player::Player()
 	is_moving = false;
 }
 
-void Player::keyboardInput(unsigned int** tile_information)
+void Player::keyboardInput(std::vector<std::vector<unsigned int>> tile_information)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{

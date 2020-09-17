@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "Map.h"
 #include "Player.h"
 
@@ -70,26 +71,19 @@ void Map::loadMap(std::string mapName)
 	height = mapHeight(mapName);	// number of rows
 	width = mapWidth(mapName);		// number of columns
 
-	map = new sf::Vector2i*[width];
-	for (int w = 0; w < width; ++w)
-	{
-		map[w] = new sf::Vector2i[height];
+	map.clear();
+	tile_information.clear();
 
-		for (int h = 0; h < height; ++h)
-		{
-			map[w][h] = sf::Vector2i(0, 0);
-		}
+	for (int i = 0; i < width; ++i)
+	{
+		std::vector<sf::Vector2i> vector;
+		map.push_back(vector);
 	}
 
-	tile_information = new unsigned int*[width];
-	for (int w = 0; w < width; ++w)
+	for (int i = 0; i < width; ++i)
 	{
-		tile_information[w] = new unsigned int[height];
-
-		for (int h = 0; h < height; ++h)
-		{
-			tile_information[w][h] = 0;
-		}
+		std::vector<unsigned int> vector;
+		tile_information.push_back(vector);
 	}
 
 	sf::Vector2i load_counter = sf::Vector2i(0, 0);		// Variable for iterating through a .txt file
@@ -103,8 +97,8 @@ void Map::loadMap(std::string mapName)
 		int y = std::stoi(str.substr(3, 5));
 		int c = std::stoi(str.substr(6, 8));
 
-		map[load_counter.x][load_counter.y] = sf::Vector2i(x, y);
-		tile_information[load_counter.x][load_counter.y] = c;
+		map[load_counter.x].push_back(sf::Vector2i(x, y));
+		tile_information[load_counter.x].push_back(c);
 
 		if (file.peek() == '\n')
 		{

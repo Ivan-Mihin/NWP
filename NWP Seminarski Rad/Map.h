@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 unsigned int const tile_size = 30;
 
@@ -16,8 +17,8 @@ public:
 
 	//Variables
 	sf::Sprite tile;
-	sf::Vector2i** map;					// 2D array that stores information about tiles
-	unsigned int** tile_information;	// 2D array that stores information about tiles (collision, map change etc.)
+	std::vector<std::vector<sf::Vector2i>> map;
+	std::vector<std::vector<unsigned int>> tile_information;
 	enum maps 
 	{
 		MAP1 = 1, 

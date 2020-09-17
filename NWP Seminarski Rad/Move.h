@@ -10,5 +10,4 @@ public:
 	int type;
 	int value;
 	std::string name;
-
 };

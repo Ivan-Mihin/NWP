@@ -21,7 +21,7 @@ public:
 	sf::Sprite sprite;
 	Pokemon pokemon;
 
-	void keyboardInput(unsigned int** tile_information);
+	void keyboardInput(std::vector<std::vector<unsigned int>> tile_information);
 	void movement(Map* loaded_map, Audio* audio);
 	void animation(int index);
 	float getX();
